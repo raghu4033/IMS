@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dasboard-styles.css">
+    <script src="js/scripts.js" defer></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-logo">
+                <img src="img/white-logo.png" alt="Logo">
+            </div>
+            <nav class="sidebar-menu">
+                <ul>
+                    <li><a href="#">Take Student Inquiry</a></li>
+                    <li><a href="#">View Inquiry List</a></li>
+                    <li><a href="#">Student Admission</a></li>
+                    <li><a href="#">View Student Information</a></li>
+                    <li><a href="#">Add Faculty</a></li>
+                    <li><a href="#">View Faculty Information</a></li>
+                    <li><a href="#">Fees Management</a></li>
+                    <li><a href="#">Class Schedule</a></li>
+                    <li><a href="#">View all Class Schedule</a></li>
+                    <li><a href="#">Attendance Management</a></li>
+                    <li><a href="#">Add announcement</a></li>
+                    <li><a href="#">View all announcements</a></li>
+                    <li><a href="#">Add Event</a></li>
+                    <li><a href="#">View all Event</a></li>
+                    <li><a href="#">Generate Certificate</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="dashboard-main">
+            <header class="dashboard-header">
+                <div class="toggle-sidebar" onclick="toggleSidebar()">
+                    &#9776;
+                </div>
+                <div class="user-info" onclick="toggleDropdown()">
+                    <img src="img/user.png" alt="User Logo" class="user-logo">
+                    <span class="user-name">Admin</span>
+                    <div class="dropdown-menu">
+                        <a href="#">Profile</a>
+                        <a href="#">Change Password</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+                <div class="address-bar">Admin > Dashboard</div>
+            </header>
+            <main class="dashboard-content">
+                <!-- Main content goes here -->
+            </main>
+        </div>
+    </div>
+</body>
+</html>
