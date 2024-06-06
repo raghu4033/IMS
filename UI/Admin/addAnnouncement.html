@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Announcements Form</title>
+<link rel="stylesheet" href="css/student-admission.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="form-heading">Announcements</h2>
+    <hr>
+    <form>
+        <div class="form-group form-group-column">
+            <label for="course-name">Notice For:</label>
+            <select id="course-name" name="course-name" required>
+                <option value="" disabled selected>Choose Course Name</option>
+                <option value="fashion">Fashion</option>
+                <option value="graphics">Graphics</option>
+                <option value="fineart">Fineart</option>
+                <option value="textile">Textile</option>
+                <option value="jewellery">Jewellery</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+        <div class="form-group form-group-column">
+            <label for="notice-subject">Notice Subject:</label>
+            <input type="text" id="notice-subject" name="notice-subject" required>
+        </div>
+        <div class="form-group">
+            <label for="notice-date">Notice Date:</label>
+            <input type="date" id="notice-date" name="notice-date" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="attachment">Attachment:</label>
+            <input type="file" id="attachment" name="attachment" accept="image/*">
+        </div>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
