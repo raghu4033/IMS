@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Admission Form</title>
+<link rel="stylesheet" href="css/student-admission.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="form-heading">Student Admission</h2>
+    <hr>
+    <form>
+        <div class="form-section">
+            <h3 class="section-heading">Official Details</h3>
+            <hr>
+            <div class="form-group form-group-column">
+                <label for="academic-year">Academic Year:</label>
+                <select id="academic-year" name="academic-year">
+                    <option value="" disabled selected>Choose Academic Year</option>
+                    <!-- Add academic year options here -->
+                </select>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="joining-date">Joining Date:</label>
+                <input type="date" id="joining-date" name="joining-date">
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="section-heading">Personal Details</h3>
+            <hr>
+            <div class="form-group form-group-column">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="middle-name">Middle Name:</label>
+                <input type="text" id="middle-name" name="middle-name">
+            </div>
+            <div class="form-group form-group-column">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="date-of-birth">Date of Birth:</label>
+                <input type="date" id="date-of-birth" name="date-of-birth" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Choose Your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="nationality">Nationality:</label>
+                <input type="text" id="nationality" name="nationality" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="blood-group">Blood Group:</label>
+                <select id="blood-group" name="blood-group" required>
+                    <option value="" disabled selected>Choose Your Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                </select>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="cast">Cast:</label>
+                <input type="text" id="cast" name="cast">
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="section-heading">Contact Details</h3>
+            <hr>
+            <div class="form-group">
+                <label for="permanent-address">Permanent Address:</label>
+                <textarea id="permanent-address" name="permanent-address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="present-address">Present Address:</label>
+                <textarea id="present-address" name="present-address"></textarea>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="pin">Pin:</label>
+                <input type="text" id="pin" name="pin" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group form-group-column">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-section">
+                <h3 class="section-heading">Photo</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="photo">Upload Photo:</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="section-heading">Parents Details</h3>
+            <hr>
+            <div class="form-group">
+                <label for="parents-name">Parents Name:</label>
+                <input type="text" id="parents-name" name="parents-name" required>
+            </div>
+            <div class="form-group">
+                <label for="parents-mobile">Parents Mobile:</label>
+                <input type="tel" id="parents-mobile" name="parents-mobile" pattern="[0-9]{10}" required>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="section-heading">Fees Details</h3>
+            <hr>
+            <div class="form-group">
+                <label for="total-fees">Total Fees:</label>
+                <input type="number" id="total-fees" name="total-fees" required>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3 class="section-heading">Course Details</h3>
+            <hr>
+            <div class="form-group">
+                <label for="course-name">Course Name:</label>
+                <select id="course-name" name="course-name" required>
+                    <option value="" disabled selected>Choose Course Name</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="graphics">Graphics</option>
+                    <option value="fineart">Fineart</option>
+                    <option value="textile">Textile</option>
+                    <option value="jewellery">Jewellery</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="batch-name">Batch Name:</label>
+                <input type="text" id="batch-name" name="batch-name" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+    
+    </body>
+    </html>
+
