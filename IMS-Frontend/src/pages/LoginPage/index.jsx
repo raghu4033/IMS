@@ -30,7 +30,7 @@ export default function LoginPage() {
       setLoading(true);
       const resp = await ApiService.post(ApiService.ApiURLs.Login, data);
       if (resp.status === 200 && resp.data?.data?.token) {
-        navigate("/");
+        navigate("/dashboard");
       }
       setLoading(false);
     } catch (err) {
