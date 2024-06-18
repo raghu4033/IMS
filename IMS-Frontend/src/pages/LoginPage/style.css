@@ -66,12 +66,3 @@
 .ims-login-box .ims-buttons button:hover {
   background-color: #5d52cf;
 }
-.ims-login-input{
-  width: 100%;
-  padding: 8px 10px;
-  font-size: 14px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-}

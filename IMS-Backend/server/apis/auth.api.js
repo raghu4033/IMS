@@ -5,8 +5,8 @@ const { login } = require("../services/auth.service");
 const ApiServices = {
   Login: async (req, res, next) => {
     try {
-      const users = await login(req.body);
-      res.formattedResponse(200, "Login successfully", users);
+      const resp = await login(req.body);
+      res.formattedResponse(200, "Login successfully", resp);
     } catch (err) {
       next(err);
     }

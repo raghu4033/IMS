@@ -1,18 +1,12 @@
 import axios from "axios";
 
-console.log({
-  baseURL: import.meta.env.VITE_APP_BACKEND_URL,
-});
-
-
-console.log(import.meta.env)
-
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BACKEND_URL,
 });
 
 const ApiURLs = {
   Login: "login",
+  getCourses: 'courses'
 };
 
 export default {
