@@ -20,7 +20,6 @@ export default function LoginPage() {
       password: Yup.string().trim().required(),
     }),
     onSubmit: (data) => {
-      console.log("data", data);
       login(data);
     },
   });
@@ -30,7 +29,12 @@ export default function LoginPage() {
       setLoading(true);
       const resp = await ApiService.post(ApiService.ApiURLs.Login, data);
       if (resp.status === 200 && resp.data?.data?.token) {
-        navigate("/dashboard");
+        localStorage.setItem("ims:auth:token", resp.data?.data?.token || "");
+        localStorage.setItem(
+          "ims:auth:profile",
+          JSON.stringify(resp.data?.data?.payload || {})
+        );
+        navigate("/");
       }
       setLoading(false);
     } catch (err) {
@@ -63,7 +67,7 @@ export default function LoginPage() {
             value={values.password}
           />
           {/* <input className="ims-login-input" type="submit" value="Login" /> */}
-          <button type="submit" disabled={loading}>
+          <button type="submit" disabled={loading} className="block">
             Login
           </button>
         </form>
