@@ -85,6 +85,9 @@ export const StudentInquiry = () => {
         }
       >
         <div>
+          <div>
+          <h2 className="form-heading">Student Inquiry </h2>
+          </div>
           <div className="form-group">
             <label htmlFor="fullname">Full Name:</label>
             <input
@@ -214,7 +217,7 @@ export const StudentInquiry = () => {
             </select>
           </div>
         </div>
-      </Drawer>
+      </Drawer>      
     </>
   );
 };

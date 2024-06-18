@@ -4,6 +4,9 @@ input[type="tel"],
 input[type="email"],
 input[type="password"],
 textarea,
+input[type="number"],
+input[type="file"],
+input[type="time"],
 select {
   width: 100%;
   padding: 8px 10px;
@@ -12,6 +15,8 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
+  background-color: white;
+  color:black ;
 }
 
 button {
@@ -41,6 +46,12 @@ button:hover {
 
 label {
   display: block;
-  font-weight: bold;
   margin-bottom: 5px;
+  color: black;
+}
+.form-heading {
+  background-color: #7267ef;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px 5px 0 0;
 }

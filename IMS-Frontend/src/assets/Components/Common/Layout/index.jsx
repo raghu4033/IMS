@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
-import IMSLogo from "../../../Images/logo.png";
+import IMSDashboardLogo from "../../../Images/dashboard-logo.png";
 import "./style.css";
 
 export const Layout = ({ menu, children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  console.log(location);
 
   const navigateToMenu = (url) => {
     navigate(url);
@@ -15,11 +16,12 @@ export const Layout = ({ menu, children }) => {
     <div className="dashboard-container">
       <aside className="dashboard-sidebar">
         <div className="sidebar-logo">
-          <img src={IMSLogo} alt="Logo" />
+          <img src={IMSDashboardLogo} alt="Logo" />
         </div>
         <nav className="sidebar-menu">
           <ul>
             {menu.map((m, index) => {
+              console.log(location.pathname === m.url, location.pathname, m.key);
               return (
                 <li key={index}>
                   <span

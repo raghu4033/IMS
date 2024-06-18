@@ -5,8 +5,7 @@
 }
 
 .dashboard-sidebar {
-  width: 250px;
-  min-width: 250px;
+  width: 20%;
   background-color: #2a2e33;
   color: #fff;
   display: flex;
@@ -30,7 +29,7 @@
 }
 
 .sidebar-logo img {
-  width: 40%;
+  width: 60%;
   /* margin: 0 auto 20px auto; */
 }
 
@@ -74,6 +73,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 .dashboard-header {
@@ -148,6 +148,6 @@
   flex-grow: 1;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #fff;
-  font-size: 14px;
 }
+
+
