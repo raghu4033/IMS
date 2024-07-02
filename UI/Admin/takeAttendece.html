@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Attendance</title>
+<link rel="stylesheet" href="css/student-admission.css">
+<link rel="stylesheet" href="css/student-list.css">
+</head>
+<body>
+
+<div class="form-container">
+    <div class="card">
+        <h2 class="form-heading">Take Attendance</h2>
+        <hr>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="course">Select Course:</label>
+                <select id="course" name="course">
+                    <option value="" disabled selected>Choose Course</option>
+                    <option value="course1">Course 1</option>
+                    <option value="course2">Course 2</option>
+                    <option value="course3">Course 3</option>
+                    <option value="course4">Course 4</option>
+                    <option value="course5">Course 5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notice-date">Attendance Date:</label>
+                <input type="date" id="notice-date" name="attendance-date" required>
+            </div>
+            <button class="btn" id="next-btn">Next</button>
+        </div>
+    </div>
+</div>
+<div class="form-container">
+    <div class="card-table-container">
+        <h2 class="form-heading">Take Attendance</h2>
+        <hr>
+        <div class="card-table">
+            <table id="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Student Mobile</th>
+                        <th>Absent/ Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dummy Records -->
+                    <tr>
+                        <td>1111111</td>
+                        <td>Harshad Satasiya</td>
+                        <td>1234567890</td>
+                        <td><button class="attendance-btn edit-btn">Present</button></td>
+                    </tr>
+                    <tr>
+                        <td>1111112</td>
+                        <td>Manthan Patel</td>
+                        <td>9876543210</td>
+                        <td><button class="attendance-btn delete-btn">Absent</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button class="btn" id="next-btn">Submit</button>
+</div>
+
+</body>
+</html>
