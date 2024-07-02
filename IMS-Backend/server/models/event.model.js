@@ -25,19 +25,6 @@ const eventSchema = new Schema(
     event_time: {
       type: String,
       required: true
-    },
-    event_description: {
-      type: String,
-      required: false,
-      maxlength: 500
-    },
-    event_type: {
-      type: String,
-      required: false
-    },
-    participants: {
-      type: Number,
-      required: false
     }
   },
   { timestamps: true }
