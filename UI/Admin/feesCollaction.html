@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Take Attendance</title>
+<link rel="stylesheet" href="css/student-admission.css">
+<link rel="stylesheet" href="css/student-list.css">
+</head>
+<body>
+
+<div class="form-container">
+    <div class="card">
+        <h2 class="form-heading">Fees Collctions</h2>
+        <hr>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="course">Select Student:</label>
+                <select id="course" name="course">
+                    <option value="" disabled selected>Choose Course</option>
+                    <option value="course1">Harshad Satasiya</option>
+                    <option value="course2">Manthan Patel</option>
+                    <option value="course1">Harshad Satasiya</option>
+                    <option value="course2">Manthan Patel</option>
+                    
+                </select>
+            </div>
+            <button class="btn" id="next-btn">Next</button>
+        </div>
+    </div>
+</div>
+    <div class="card-table-container">
+        <h2 class="form-heading">Harshad Satasiya -11111111 </h2>
+        <hr>
+        <form>
+            <div class="form-section">
+                <h3 class="section-heading">Fees Details</h3>
+                <hr>
+                <div class="form-group form-group-column">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group form-group-column">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" required>
+                </div>
+                <div class="form-group form-group-column">
+                    <label for="installment-number">Installment Number:</label>
+                    <input type="number" id="installment-number" name="installment-number" required>
+                </div>
+                <div class="form-group form-group-column">
+                    <label for="payment-type">Payment Type:</label>
+                    <select id="payment-type" name="payment-type" required>
+                        <option value="" disabled selected>Choose Payment Type</option>
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                        <option value="cheque">Cheque</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+    <div class="card-table-container">
+        <h2 class="form-heading">Harshad Satasiya -11111111 </h2>
+        <hr>
+        <div class="card-table">
+            <table id="fees-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Installment Number</th>
+                        <th>Payment Type</th>
+                        <th>Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample records -->
+                    <tr>
+                        <td>2024-06-15</td>
+                        <td>500</td>
+                        <td>1</td>
+                        <td>Cash</td>
+                        <td><button class="invoice-btn edit-btn">Invoice</button></td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-22</td>
+                        <td>600</td>
+                        <td>2</td>
+                        <td>Card</td>
+                        <td><button class="invoice-btn edit-btn">Invoice</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
