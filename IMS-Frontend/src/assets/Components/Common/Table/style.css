@@ -1,0 +1,85 @@
+/* css for table */
+
+.card-table-container {
+  max-width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-table {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.card-table table {
+  /* table-layout: fixed; */
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.card-table .table-responsive::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.card-table th,
+.card-table td {
+  padding: 10px;
+}
+
+.card-table td {
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-table th {
+  background-color: #717171;
+  color: #000;
+  text-align: left;
+}
+
+.card-table th:nth-child(1) {
+  border-top-left-radius: 8px;
+}
+.card-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.card-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.card-table tbody tr:hover {
+  background-color: #353232;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+.card-table th {
+  background-color: #2a2e33;
+  color: #fff;
+  text-align: left;
+}
+
+.card-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.card-table tbody tr:hover {
+  background-color: #e4e4e4;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-table th,
+  .card-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
