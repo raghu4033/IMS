@@ -14,21 +14,67 @@
         <hr>
         <div class="card-body">
             <div class="form-group">
-                <label for="course">Select Course:</label>
+                <label for="course course-label">Select Course:</label>
                 <select id="course" name="course">
                     <option value="" disabled selected>Choose Course</option>
                     <option value="course1">Course 1</option>
-                    <option value="course2">Course 2</option>
-                    <option value="course3">Course 3</option>
-                    <option value="course4">Course 4</option>
-                    <option value="course5">Course 5</option>
                 </select>
             </div>
             <button class="btn" id="next-btn">Next</button>
         </div>
     </div>
 </div>
-
+<div class="form-container">
+    <div class="card" id="second-card">
+        <h2 class="card-heading">Class Schedule Details</h2>
+        <hr>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="multi-column">
+                    <label for="from-date">From Date:</label>
+                    <input type="date" id="from-date" name="from-date">
+                </div>
+                <div class="multi-column">
+                    <label for="to-date">To Date:</label>
+                    <input type="date" id="to-date" name="to-date">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="multi-column">
+                    <label for="from-time">From Time:</label>
+                    <input type="time" id="from-time" name="from-time">
+                </div>
+                <div class="multi-column">
+                    <label for="to-time">To Time:</label>
+                    <input type="time" id="to-time" name="to-time">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="class-type">Class Type:</label>
+                <select id="class-type" name="class-type">
+                    <option value="" disabled selected>Choose Class Type</option>
+                    <option value="practical">Practical</option>
+                    <option value="theory">Theory</option>
+                    <option value="lab">Lab</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="faculty">Faculty:</label>
+                <select id="faculty" name="faculty">
+                    <option value="" disabled selected>Choose Faculty</option>
+                    <option value="faculty1">Faculty 1</option>
+                    <option value="faculty2">Faculty 2</option>
+                    <option value="faculty3">Faculty 3</option>
+                </select>
+            </div>
+            <button class="btn" id="submit-btn">Submit</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
