@@ -23,11 +23,6 @@ const feesSchema = new Schema(
       type: Date,
       required: true
     },
-    payment_status: {
-      type: String,
-      required: false,
-      default: 'Pending'
-    },
     payment_type: {
       type: String,
       required: true,
@@ -41,10 +36,6 @@ const feesSchema = new Schema(
     fees_invoice: {
       type: String,
       required: true
-    },
-    remarks: {
-      type: String,
-      required: false
     }
   },
   { timestamps: true }
