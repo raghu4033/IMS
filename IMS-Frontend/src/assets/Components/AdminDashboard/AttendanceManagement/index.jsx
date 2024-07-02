@@ -28,7 +28,31 @@ export const AttendanceManagement = () => {
 
   return (
     <>
-{/* TO be added */}
+      <button onClick={() => setIsOpen(true)}>Take Attendance</button>
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={"Take Attendance"}
+      >
+        <div className="form-container">
+          <h2 className="form-heading">Take Attendance</h2>
+          <hr />
+          <div className="form-group">
+            <label htmlFor="course">Select Course:</label>
+            <select id="course" name="course">
+              <option value="" disabled selected>Choose Course</option>
+              {courses.map((course) => (
+                <option key={course.id} value={course.id}>{course.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="attendance-date">Attendance Date:</label>
+            <input type="date" id="attendance-date" name="attendance-date" required />
+          </div>
+          <button className="btn" id="next-btn">Next</button>
+        </div>
+      </Drawer>
     </>
   );
 };
