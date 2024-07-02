@@ -64,7 +64,25 @@ export const AttendanceManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* Dynamically fetch student records here */}
+                {/* Dummy Records */}
+                <tr>
+                  <td>1111111</td>
+                  <td>Harshad Satasiya</td>
+                  <td>1234567890</td>
+                  <td>
+                    <button className="attendance-btn edit-btn">Present</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>1111112</td>
+                  <td>Manthan Patel</td>
+                  <td>9876543210</td>
+                  <td>
+                    <button className="attendance-btn delete-btn">
+                      Absent
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -95,7 +113,23 @@ export const AttendanceManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* Dynamically fetch attendance records here */}
+              {/* Dummy Records */}
+              <tr>
+                <td>1111111</td>
+                <td>Harshad Satasiya</td>
+                <td>1234567890</td>
+                <td>
+                  <button className="attendance-btn edit-btn">Present</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1111112</td>
+                <td>Manthan Patel</td>
+                <td>9876543210</td>
+                <td>
+                  <button className="attendance-btn delete-btn">Absent</button>
+                </td>
+                </tr>
               </tbody>
             </table>
           </div>
