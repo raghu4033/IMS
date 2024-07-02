@@ -7,23 +7,28 @@ export const AttendanceManagement = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const getCourses = async () => {
+    try {
+      setLoading(true);
+      const resp = await ApiService.get(ApiService.ApiURLs.getCourses);
+      if (resp.status === 200 && resp.data?.data) {
+        console.log(resp.data.data);
+        setCourses(resp.data.data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     getCourses();
   }, []);
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Take Attendance</button>
-      <Drawer
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={"Take Attendance"}
-      >
-        <div className="form-container">
-          <h2 className="form-heading">Take Attendance</h2>
-          <hr />
-        </div>
-      </Drawer>
+{/* TO be added */}
     </>
   );
 };
