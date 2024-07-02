@@ -1,3 +1,5 @@
+// index.jsx
+
 import { useState, useEffect } from "react";
 import { Drawer } from "../../Common/Drawer";
 import ApiService from "../../../../Utils/ApiService";
@@ -47,19 +49,6 @@ export const AttendanceManagement = () => {
             </select>
           </div>
           <div className="form-group">
-                <label htmlFor="course">Select Course:</label>
-                <select id="course" name="course">
-                  <option value="" disabled selected>
-                    Choose Course to view Attendance
-                  </option>
-                  <option value="course1">Course 1</option>
-                  <option value="course2">Course 2</option>
-                  <option value="course3">Course 3</option>
-                  <option value="course4">Course 4</option>
-                  <option value="course5">Course 5</option>
-                </select>
-              </div>
-          <div className="form-group">
             <label htmlFor="attendance-date">Attendance Date:</label>
             <input type="date" id="attendance-date" name="attendance-date" required />
           </div>
@@ -76,6 +65,37 @@ export const AttendanceManagement = () => {
               </thead>
               <tbody>
                 {/* Dynamically fetch student records here */}
+              </tbody>
+            </table>
+          </div>
+          <hr />
+          <h2 className="form-heading">View Attendance</h2>
+          <div className="form-group">
+            <label htmlFor="view-course">Select Course:</label>
+            <select id="view-course" name="view-course">
+              <option value="" disabled selected>Choose Course</option>
+              {courses.map((course) => (
+                <option key={course.id} value={course.id}>{course.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="view-attendance-date">Attendance Date:</label>
+            <input type="date" id="view-attendance-date" name="view-attendance-date" required />
+          </div>
+          <button className="btn" id="view-btn">View</button>
+          <div className="card-table">
+            <table id="view-attendance-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Student Mobile</th>
+                  <th>Absent/Present</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Dynamically fetch attendance records here */}
               </tbody>
             </table>
           </div>
