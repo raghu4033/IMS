@@ -42,18 +42,6 @@ const classScheduleSchema = new Schema(
     faculty: {
       type: String,
       required: true
-    },
-    location: {
-      type: String,
-      required: true
-    },
-    maxStudents: {
-      type: Number,
-      required: true
-    },
-    recurring: {
-      type: Boolean,
-      default: false
     }
   },
   { timestamps: true }
