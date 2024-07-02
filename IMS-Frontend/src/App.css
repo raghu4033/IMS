@@ -1,16 +1,26 @@
 input[type="text"],
-input[type="password"] {
+input[type="date"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+textarea,
+input[type="number"],
+input[type="file"],
+input[type="time"],
+select {
   width: 100%;
   padding: 8px 10px;
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
+  background-color: white;
+  color:black ;
 }
 
 button {
-  width: 100%;
+  min-width: 150px;
   padding: 8px 10px;
   font-size: 14px;
   border-radius: 5px;
@@ -22,6 +32,63 @@ button {
   transition: background-color 0.3s ease;
 }
 
+button.block {
+  width: 100%;
+}
+
 button:hover {
   background-color: #5d52cf;
+}
+
+.form-group {
+  margin-bottom: 0px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+.form-heading {
+  background-color: #7267ef;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px 5px 0 0;
+}
+/* css for table */
+
+.card-table-container {
+  max-width: 100%;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-table {
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.card-table table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.card-table th,
+.card-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc  !important; 
+}
+
+.card-table th {
+  background-color: #ffffff;
+  color: #000;
+  text-align: left;
+}
+
+.card-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }

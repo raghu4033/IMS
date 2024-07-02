@@ -73,6 +73,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
 .dashboard-header {
@@ -147,6 +148,6 @@
   flex-grow: 1;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #fff;
-  font-size: 14px;
 }
+
+

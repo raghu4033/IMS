@@ -20,3 +20,60 @@ InstituteManager is a comprehensive management system designed to streamline adm
 ## Installation
 
 
+## Clone the Repository
+To get started, clone the repository using the following command:
+```bash
+git clone https://github.com/raghu4033/IMS.git
+```
+
+## Backend Setup
+### Navigate to the backend directory:
+```bash
+cd IMS-Backend
+```
+
+### Install the required dependencies:
+
+```bash
+npm install
+```
+
+### Start the backend server:
+```bash
+npm run dev
+```
+
+### The backend will run on port 3000.
+
+
+## Frontend Setup
+### Navigate to the frontend directory:
+```bash
+cd IMS-Frontend
+```
+
+### Install the required dependencies:
+
+```bash
+npm insall
+```
+
+### Start the frontend server:
+
+```bash 
+npm run dev
+```
+
+### The frontend will run on port 5173.
+
+# Admin Credentials
+## To access the admin panel, use the following credentials:
+
+```bash
+User: Admin@admin.com
+Pass: Admin@123
+```
+
+
+# UI Components
+## For the UI part, you can see all the UI components in the UI folder.

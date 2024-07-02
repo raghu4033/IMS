@@ -5,6 +5,8 @@ import { Dashboard } from "./Dashboard";
 import { ManageStudent } from "./ManageStudent";
 import { StudentInquiry } from "./StudentInquiry";
 import { StudentAdmission } from "./StudentAdmission";
+import { GenerateCertificate } from "./GenerateCertificate";
+import { FacultyAdmission } from "./FacultyAdmission";
 
 export const AdminDashboard = () => {
   return (
@@ -16,11 +18,11 @@ export const AdminDashboard = () => {
         <Route path="/student-admission" element={<StudentAdmission />} />
         <Route path="/faculty-admission" element={<ManageStudent />} />
         <Route path="/manage-student" element={<ManageStudent />} />
-        <Route path="/manage-faculty" element={<ManageStudent />} />
+        <Route path="/manage-faculty" element={<FacultyAdmission />} />
         <Route path="/class-schedule" element={<ManageStudent />} />
         <Route path="/attandance-management" element={<ManageStudent />} />
         <Route path="/fees-management" element={<ManageStudent />} />
-        <Route path="/generate-certificate" element={<ManageStudent />} />
+        <Route path="/generate-certificate" element={<GenerateCertificate />} />
         <Route path="/notice-management" element={<ManageStudent />} />
         <Route path="/event-management" element={<ManageStudent />} />
       </Routes>
