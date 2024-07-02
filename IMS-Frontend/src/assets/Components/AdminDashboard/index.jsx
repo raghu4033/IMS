@@ -5,6 +5,7 @@ import { Dashboard } from "./Dashboard";
 import { ManageStudent } from "./ManageStudent";
 import { StudentInquiry } from "./StudentInquiry";
 import { StudentAdmission } from "./StudentAdmission";
+import { GenerateCertificate } from "./GenerateCertificate";
 
 export const AdminDashboard = () => {
   return (
@@ -20,7 +21,7 @@ export const AdminDashboard = () => {
         <Route path="/class-schedule" element={<ManageStudent />} />
         <Route path="/attandance-management" element={<ManageStudent />} />
         <Route path="/fees-management" element={<ManageStudent />} />
-        <Route path="/generate-certificate" element={<ManageStudent />} />
+        <Route path="/generate-certificate" element={<GenerateCertificate />} />
         <Route path="/notice-management" element={<ManageStudent />} />
         <Route path="/event-management" element={<ManageStudent />} />
       </Routes>
