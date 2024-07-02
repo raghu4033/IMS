@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
 import { Drawer } from "../../Common/Drawer";
+import ApiService from "../../../../Utils/ApiService";
 
 export const GenerateCertificate = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getStudents = async () => {
+    try {
+      setLoading(true);
+      const resp = await ApiService.get(ApiService.ApiURLs.getStudents);
+      if (resp.status === 200 && resp.data?.data) {
+        setStudents(resp.data.data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getStudents();
+  }, []);
 
   return (
     <>
-      <button
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Generate Certificate
-      </button>
+     
 
       <Drawer
         isOpen={isOpen}
@@ -29,7 +44,7 @@ export const GenerateCertificate = () => {
       >
         <div className="form-container">
           <div className="card">
-            <h2 className="form-heading">Select Student</h2>
+          
             <hr />
             <div className="card-body">
               <div className="form-group">
