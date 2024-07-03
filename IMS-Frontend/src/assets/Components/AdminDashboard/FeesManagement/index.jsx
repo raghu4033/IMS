@@ -29,7 +29,9 @@ export const FeesManagement = () => {
       <button onClick={() => setIsOpen(true)}>Fees Collection</button>
       <Drawer
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false);
+        }}
         title={"Fees Collection"}
         footer={
           <>
@@ -38,8 +40,9 @@ export const FeesManagement = () => {
           </>
         }
       >
-        <div className="card-table-container">
-          <h2 className="form-heading">Fees Collection Form</h2>
+        
+<div className="card-table-container">
+          <h2 className="form-heading">Harshad Satasiya - 11111111</h2>
           <hr />
           <form>
             <div className="form-section">
@@ -60,7 +63,9 @@ export const FeesManagement = () => {
               <div className="form-group form-group-column">
                 <label htmlFor="payment-type">Payment Type:</label>
                 <select id="payment-type" name="payment-type" required>
-                  <option value="" disabled selected>Choose Payment Type</option>
+                  <option value="" disabled selected>
+                    Choose Payment Type
+                  </option>
                   <option value="cash">Cash</option>
                   <option value="card">Card</option>
                   <option value="cheque">Cheque</option>
