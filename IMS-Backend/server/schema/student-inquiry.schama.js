@@ -8,7 +8,7 @@ const createStudentInquirySchema = Joi.object({
   joiningDate: Joi.date().required(),
   dob: Joi.date().required(),
   gender: Joi.string().trim().required(),
-  reference: Joi.string().trim().optional(),
+  reference: Joi.string().trim().required(),
   qualification: Joi.string().trim().required(),
   course: Joi.string().trim().hex().length(24).required(),
 });
