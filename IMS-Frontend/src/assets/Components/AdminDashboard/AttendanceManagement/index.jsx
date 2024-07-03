@@ -1,7 +1,7 @@
-// index.jsx
-
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import * as Yup from "yup";
 import { Drawer } from "../../Common/Drawer";
+import { useFormik } from "formik";
 import ApiService from "../../../../Utils/ApiService";
 
 export const AttendanceManagement = () => {
@@ -30,29 +30,65 @@ export const AttendanceManagement = () => {
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Take Attendance</button>
+      <button
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Take Attendance
+      </button>
+      
+
       <Drawer
         isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false);
+        }}
         title={"Take Attendance"}
+        footer={
+          <>
+            <button onClick={() => setIsOpen(false)}>Cancel</button>
+            <button>Submit</button>
+          </>
+        }
       >
+        <div className="form-container">
+          <div className="card">
+            <h2 className="form-heading">Take Attendance</h2>
+            <hr />
+            <div className="card-body">
+              <div className="form-group">
+                <label htmlFor="course">Select Course:</label>
+                <select id="course" name="course">
+                  <option value="" disabled selected>
+                    Choose Course
+                  </option>
+                  <option value="course1">Course 1</option>
+                  <option value="course2">Course 2</option>
+                  <option value="course3">Course 3</option>
+                  <option value="course4">Course 4</option>
+                  <option value="course5">Course 5</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="attendance-date">Attendance Date:</label>
+                <input
+                  type="date"
+                  id="attendance-date"
+                  name="attendance-date"
+                  required
+                />
+              </div>
+              <button className="btn" id="next-btn">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+        <br />
         <div className="form-container">
           <h2 className="form-heading">Take Attendance</h2>
           <hr />
-          <div className="form-group">
-            <label htmlFor="course">Select Course:</label>
-            <select id="course" name="course">
-              <option value="" disabled selected>Choose Course</option>
-              {courses.map((course) => (
-                <option key={course.id} value={course.id}>{course.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="attendance-date">Attendance Date:</label>
-            <input type="date" id="attendance-date" name="attendance-date" required />
-          </div>
-          <button className="btn" id="next-btn">Next</button>
           <div className="card-table">
             <table id="attendance-table">
               <thead>
@@ -86,33 +122,57 @@ export const AttendanceManagement = () => {
               </tbody>
             </table>
           </div>
-          <hr />
+        </div>
+      </Drawer>
+      <br />
+      <div className="form-container">
+        <div className="card">
           <h2 className="form-heading">View Attendance</h2>
-          <div className="form-group">
-            <label htmlFor="view-course">Select Course:</label>
-            <select id="view-course" name="view-course">
-              <option value="" disabled selected>Choose Course</option>
-              {courses.map((course) => (
-                <option key={course.id} value={course.id}>{course.name}</option>
-              ))}
-            </select>
+          <hr />
+          <div className="card-body">
+            <div className="form-group">
+              <label htmlFor="course">Select Course:</label>
+              <select id="course" name="course">
+                <option value="" disabled selected>
+                  Choose Course
+                </option>
+                <option value="course1">Course 1</option>
+                <option value="course2">Course 2</option>
+                <option value="course3">Course 3</option>
+                <option value="course4">Course 4</option>
+                <option value="course5">Course 5</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="attendance-date">Attendance Date:</label>
+              <input
+                type="date"
+                id="attendance-date"
+                name="attendance-date"
+                required
+              />
+            </div>
+            <button className="btn" id="next-btn">
+              Next
+            </button>
           </div>
-          <div className="form-group">
-            <label htmlFor="view-attendance-date">Attendance Date:</label>
-            <input type="date" id="view-attendance-date" name="view-attendance-date" required />
-          </div>
-          <button className="btn" id="view-btn">View</button>
-          <div className="card-table">
-            <table id="view-attendance-table">
-              <thead>
-                <tr>
-                  <th>Student ID</th>
-                  <th>Student Name</th>
-                  <th>Student Mobile</th>
-                  <th>Absent/Present</th>
-                </tr>
-              </thead>
-              <tbody>
+        </div>
+      </div>
+      <br/>
+      
+        <h2 className="form-heading">View Attendance</h2>
+        <hr />
+        <div className="card-table">
+          <table id="attendance-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Mobile</th>
+                <th>Absent/Present</th>
+              </tr>
+            </thead>
+            <tbody>
               {/* Dummy Records */}
               <tr>
                 <td>1111111</td>
@@ -129,12 +189,11 @@ export const AttendanceManagement = () => {
                 <td>
                   <button className="attendance-btn delete-btn">Absent</button>
                 </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </Drawer>
+
     </>
   );
 };
