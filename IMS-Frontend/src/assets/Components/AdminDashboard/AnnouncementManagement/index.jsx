@@ -105,6 +105,24 @@ export const AnnouncementManagement = () => {
             </thead>
             <tbody>
               {/* Dummy Records */}
+              <tr>
+                <td>Fashion</td>
+                <td>Important Notice Regarding Midterm Exam</td>
+                <td>2024-06-15</td>
+                <td>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed tortor non ligula convallis fringilla. Sed id neque et nunc ultricies faucibus.
+                </td>
+                <td><a href="#" className="edit-btn">Download Attachment</a></td>
+              </tr>
+              <tr>
+                <td>Graphics</td>
+                <td>Deadline Extension for Project Submission</td>
+                <td>2024-06-20</td>
+                <td>
+                  Nullam vehicula turpis in leo egestas, nec tincidunt velit efficitur. Vivamus lacinia tincidunt tellus, vel facilisis lorem vestibulum nec.
+                </td>
+                <td><a href="#" className="edit-btn">Download Attachment</a></td>
+              </tr>
             </tbody>
           </table>
           </div>
