@@ -75,7 +75,9 @@
 .card-table tbody tr:hover {
   background-color: #e4e4e4;
 }
-
+.certificate-table-img{
+  height: 50px;
+}
 @media only screen and (max-width: 600px) {
   .card-table th,
   .card-table td {
