@@ -49,8 +49,8 @@ export const EventManagement = () => {
           </>
         }
       >
-        <div className="container form-container">
-          <h2 className="form-heading heading">Schedule Event</h2>
+        <div className="form-container">
+          <h2 className="form-heading">Schedule Event</h2>
           <hr />
           <form>
             <div className="form-group">
@@ -69,10 +69,42 @@ export const EventManagement = () => {
               <label htmlFor="event-time">Event Time:</label>
               <input type="time" id="event-time" name="event-time" required />
             </div>
-            <button type="submit" className="btn custome-blue-submit">Add Event</button>
+            <button type="submit" className="btn">Add Event</button>
           </form>
         </div>
       </Drawer>
+
+      <div className="card-table-container">
+        <h2 className="form-heading">Event Schedule</h2>
+        <hr />
+        <div className="card-table">
+          <table id="event-table">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Event Place</th>
+                <th>Event Date</th>
+                <th>Event Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Dummy records */}
+              <tr>
+                <td>Birthday Party</td>
+                <td>City Hall</td>
+                <td>2024-07-15</td>
+                <td>18:00</td>
+              </tr>
+              <tr>
+                <td>Conference</td>
+                <td>Convention Center</td>
+                <td>2024-08-20</td>
+                <td>09:00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 };
