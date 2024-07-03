@@ -123,7 +123,6 @@ export const ClassSchedule = () => {
                   <option value="faculty1">Faculty 1</option>
                   <option value="faculty2">Faculty 2</option>
                   <option value="faculty3">Faculty 3</option>
-                  <option value="faculty3">Faculty </option>
                 </select>
               </div>
               <button className="btn" id="submit-btn">Submit</button>
@@ -151,7 +150,26 @@ export const ClassSchedule = () => {
               </tr>
             </thead>
             <tbody>
-              
+              <tr>
+                <td>Course 1</td>
+                <td>2024-06-15</td>
+                <td>2024-06-30</td>
+                <td>09:00</td>
+                <td>11:00</td>
+                <td>Mathematics</td>
+                <td>Practical</td>
+                <td>Faculty 1</td>
+              </tr>
+              <tr>
+                <td>Course 2</td>
+                <td>2024-07-01</td>
+                <td>2024-07-15</td>
+                <td>14:00</td>
+                <td>16:00</td>
+                <td>Physics</td>
+                <td>Theory</td>
+                <td>Faculty 2</td>
+              </tr>
             </tbody>
           </table>
         </div>
