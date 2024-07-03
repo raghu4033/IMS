@@ -1,5 +1,5 @@
-const { Schema, model } = require("mongoose");
-const { Constants } = require("../utils/constants");
+const { Schema, model } = require('mongoose');
+const { Constants } = require('../utils/constants');
 
 const schema = new Schema(
   {
@@ -32,26 +32,28 @@ const schema = new Schema(
       default: Constants.Role.STUDENT,
     },
     dob: { type: Date },
-    gender: { type: String, default: "" },
-    aadhar: { type: String },
-    address: { type: String },
+    gender: { type: String, default: '' },
+    cast: { type: String, default: '' },
+    nationality: { type: String },
+    permanentAddress: { type: String },
+    presentAddress: { type: String },
     city: { type: String },
     pin: { type: String },
     mobile: { type: String },
-    photo: { type: String },
     isActive: { type: Boolean, default: true },
     lastLogin: { type: String },
     academicYear: { type: String },
     sid: { type: String },
     bloodGroup: { type: String },
-    college: { type: String },
-    qualification: { type: String },
-    fees: { type: Number },
+    totalFees: { type: Number },
     remainingFees: { type: Number },
     joiningDate: { type: Date },
-    departmentCategory: { type: String },
+    parentsName: { type: String },
+    parentsMobile: { type: String },
+    batchName: { type: String },
+    course: { type: Schema.Types.ObjectId, ref: 'Course' },
   },
   { timestamps: true }
 );
 
-module.exports = model("User", schema);
+module.exports = model('User', schema);
