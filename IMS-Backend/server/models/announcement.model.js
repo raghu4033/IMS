@@ -1,8 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-
-const User = require("./user.model");
-
 const announcementSchema = new Schema(
   {
     user_id: {
@@ -12,25 +9,27 @@ const announcementSchema = new Schema(
     },
     notice_for: {
       type: String,
-      default: 'all',
-      maxlength: 200
+      default: 'all'
     },
     notice_sub: {
       type: String,
-      required: true,
-      maxlength: 100
+      required: true
     },
     notice_date: {
       type: Date,
       required: true
     },
-    notice_desc: {
+    notice_priority: {
       type: String,
-      required: true
+      default: 'normal'
     },
-    notice_file: {
-      type: String, 
-      required: false 
+    notice_type: {
+      type: String,
+      default: 'general'
+    },
+    notice_tags: {
+      type: [String],
+      default: []
     },
     is_active: {
       type: Boolean,
