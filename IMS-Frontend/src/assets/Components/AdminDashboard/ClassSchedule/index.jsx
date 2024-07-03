@@ -104,10 +104,6 @@ export const ClassSchedule = () => {
                 <input type="text" id="subject" name="subject" />
               </div>
               <div className="form-group">
-                <label htmlFor="sectin">section:</label>
-                <input type="text" id="sectin" name="section" />
-              </div>
-              <div className="form-group">
                 <label htmlFor="class-type">Class Type:</label>
                 <select id="class-type" name="class-type">
                   <option value="" disabled selected>
@@ -127,7 +123,7 @@ export const ClassSchedule = () => {
                   <option value="faculty1">Faculty 1</option>
                   <option value="faculty2">Faculty 2</option>
                   <option value="faculty3">Faculty 3</option>
-                  <option value="faculty3">Faculty 4</option>
+                  <option value="faculty3">Faculty </option>
                 </select>
               </div>
               <button className="btn" id="submit-btn">Submit</button>
@@ -151,13 +147,11 @@ export const ClassSchedule = () => {
                 <th>To Time</th>
                 <th>Subject</th>
                 <th>Class Type</th>
-                <th>section</th>
-
                 <th>Faculty</th>
               </tr>
             </thead>
             <tbody>
-              {/* Dynamically fetch data */}
+              
             </tbody>
           </table>
         </div>
