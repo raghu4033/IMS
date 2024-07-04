@@ -1,6 +1,6 @@
 const { validateBody } = require('../middlewares/validator');
 const { createAdminSchema, createStudentSchema } = require('../schema/user.schama');
-const { getUsers, createAdminUser } = require('../services/user.service');
+const { getUsers, createAdminUser, createStudentUser } = require('../services/user.service');
 
 const ApiService = {
   getUsers: async (req, res, next) => {

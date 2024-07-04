@@ -105,4 +105,5 @@ async function createStudentUser(body) {
 module.exports = {
   getUsers,
   createAdminUser,
+  createStudentUser
 };
