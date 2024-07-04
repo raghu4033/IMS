@@ -8,7 +8,7 @@ const columns = [
   {
     label: 'Date',
     key: 'joiningDate',
-    renderValue: (value, row) => {
+    renderValue: (value) => {
       return moment(value).format('DD MMMM YYYY');
     },
   },
@@ -31,14 +31,14 @@ const columns = [
   {
     label: 'Course',
     key: 'course',
-    renderValue: (value, row) => {
+    renderValue: (value) => {
       return value?.name || 'N/A';
     },
   },
   {
     label: 'Date of Birth',
     key: 'dob',
-    renderValue: (value, row) => {
+    renderValue: (value) => {
       return moment(value).format('DD MMMM YYYY');
     },
   },
