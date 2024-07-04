@@ -11,7 +11,9 @@ const ApiURLs = {
   getStudentInquiries: "student-inquiries",
   saveStudentAdmission: "user/student",
   saveEvent: "event",
-  getEvents: "events"
+  getEvents: "events",
+  saveAnnouncement: "announcement",
+  getAnnouncements: "announcements",
 };
 
 export default {

@@ -1,19 +1,54 @@
 import { useEffect, useState } from "react";
 import { Drawer } from "../../Common/Drawer";
 import ApiService from "../../../../Utils/ApiService";
+import { AnnouncementForm } from "./AnnouncementForm";
+import { Table } from "../../Common/Table";
+import moment from "moment";
+
+const columns = [
+  {
+    label: "Subject",
+    key: "subject",
+  },
+  {
+    label: "Description",
+    key: "description",
+  },
+  {
+    label: "Date",
+    key: "date",
+    renderValue: (value) => {
+      return moment(value).format("DD MMMM YYYY");
+    },
+  },
+  {
+    label: "Announced By",
+    key: "user",
+    renderValue: (value) => {
+      return [value?.firstName, value?.middleName].filter(Boolean).join(" ");
+    },
+  },
+  {
+    label: "Announced For",
+    key: "course",
+    renderValue: (value) => {
+      return value?.name;
+    },
+  },
+];
 
 export const AnnouncementManagement = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [courses, setCourses] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getCourses = async () => {
+  const getAnnouncements = async () => {
     try {
       setLoading(true);
-      const resp = await ApiService.get(ApiService.ApiURLs.getCourses);
+      const resp = await ApiService.get(ApiService.ApiURLs.getAnnouncements);
       if (resp.status === 200 && resp.data?.data) {
         console.log(resp.data.data);
-        setCourses(resp.data.data);
+        setAnnouncements(resp.data.data);
       }
       setLoading(false);
     } catch (err) {
@@ -23,12 +58,13 @@ export const AnnouncementManagement = () => {
   };
 
   useEffect(() => {
-    getCourses();
+    getAnnouncements();
   }, []);
 
   return (
     <>
       <button
+        disabled={loading}
         onClick={() => {
           setIsOpen(true);
         }}
@@ -36,98 +72,19 @@ export const AnnouncementManagement = () => {
         Add Announcement
       </button>
 
-      <Drawer
-        isOpen={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-        title={"Add Announcement"}
-        footer={
-          <>
-            <button onClick={() => setIsOpen(false)}>Cancel</button>
-            <button>Submit</button>
-          </>
-        }
-      >
-        <div className="form-container">
-          <h2 className="form-heading">Announcements</h2>
-          <hr />
-          <form>
-            <div className="form-group form-group-column">
-              <label htmlFor="course-name">Notice For:</label>
-              <select id="course-name" name="course-name" required>
-                <option value="" disabled selected>
-                  Choose Course Name
-                </option>
-                <option value="fashion">Fashion</option>
-                <option value="graphics">Graphics</option>
-                <option value="fineart">Fineart</option>
-                <option value="textile">Textile</option>
-                <option value="jewellery">Jewellery</option>
-                <option value="others">Others</option>
-              </select>
-            </div>
-            <div className="form-group form-group-column">
-              <label htmlFor="notice-subject">Notice Subject:</label>
-              <input type="text" id="notice-subject" name="notice-subject" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="notice-date">Notice Date:</label>
-              <input type="date" id="notice-date" name="notice-date" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Description:</label>
-              <textarea id="description" name="description" required></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="attachment">Attachment:</label>
-              <input type="file" id="attachment" name="attachment" accept="image/*" />
-            </div>
-            <button type="submit" className="btn">Submit</button>
-          </form>
-        </div>
-      </Drawer>
+      {isOpen ? (
+        <AnnouncementForm
+          getAnnouncements={getAnnouncements}
+          open={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        />
+      ) : (
+        <></>
+      )}
 
-      <div className="card-table-container">
-        <h2 className="form-heading">View Announcements</h2>
-        <hr />
-        <div className="card-table">
-        <div className="table-responsive">
-          <table id="announcements-table">
-            <thead>
-              <tr>
-                <th>Notice For</th>
-                <th>Notice Subject</th>
-                <th>Notice Date</th>
-                <th>Description</th>
-                <th>Attachment</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Dummy Records */}
-              <tr>
-                <td>Fashion</td>
-                <td>Important Notice Regarding Midterm Exam</td>
-                <td>2024-06-15</td>
-                <td>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed tortor non ligula convallis fringilla. Sed id neque et nunc ultricies faucibus.
-                </td>
-                <td><a href="#" className="edit-btn">Download Attachment</a></td>
-              </tr>
-              <tr>
-                <td>Graphics</td>
-                <td>Deadline Extension for Project Submission</td>
-                <td>2024-06-20</td>
-                <td>
-                  Nullam vehicula turpis in leo egestas, nec tincidunt velit efficitur. Vivamus lacinia tincidunt tellus, vel facilisis lorem vestibulum nec.
-                </td>
-                <td><a href="#" className="edit-btn">Download Attachment</a></td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-        </div>
-      </div>
+      <Table columns={columns} rows={announcements} />
     </>
   );
 };
