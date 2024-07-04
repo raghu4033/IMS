@@ -26,4 +26,8 @@ async function mongoInitialize(callback) {
   });
 }
 
-module.exports = { mongoInitialize };
+function objectId(id) {
+  return new mongoose.Types.ObjectId(id);
+}
+
+module.exports = { mongoInitialize, objectId };

@@ -6,7 +6,14 @@ const axiosInstance = axios.create({
 
 const ApiURLs = {
   Login: "login",
-  getCourses: 'courses'
+  getCourses: "courses",
+  saveStudentInquiries: "student-inquiry",
+  getStudentInquiries: "student-inquiries",
+  saveStudentAdmission: "user/student",
+  saveEvent: "event",
+  getEvents: "events",
+  saveAnnouncement: "announcement",
+  getAnnouncements: "announcements",
 };
 
 export default {

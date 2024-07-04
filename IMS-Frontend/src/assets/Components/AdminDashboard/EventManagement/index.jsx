@@ -1,54 +1,46 @@
 import { useEffect, useState } from "react";
-import { Drawer } from "../../Common/Drawer";
+import { EventManagementForm } from "./EventManagementForm";
 import ApiService from "../../../../Utils/ApiService";
-import { AnnouncementForm } from "./AnnouncementForm";
 import { Table } from "../../Common/Table";
 import moment from "moment";
 
 const columns = [
   {
-    label: "Subject",
-    key: "subject",
+    label: "Event Name",
+    key: "name",
   },
   {
-    label: "Description",
-    key: "description",
+    label: "Event Place",
+    key: "place",
   },
   {
-    label: "Date",
+    label: "Event Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).format("DD MMMM YYYY");
+      return moment(value).format("DD MMMM YYYY hh:mm A");
     },
   },
   {
-    label: "Announced By",
+    label: "Organized By",
     key: "user",
     renderValue: (value) => {
       return [value?.firstName, value?.middleName].filter(Boolean).join(" ");
     },
   },
-  {
-    label: "Announced For",
-    key: "course",
-    renderValue: (value) => {
-      return value?.name;
-    },
-  },
 ];
 
-export const AnnouncementManagement = () => {
+export const EventManagement = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [announcements, setAnnouncements] = useState([]);
+  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getAnnouncements = async () => {
+  const getEvents = async () => {
     try {
       setLoading(true);
-      const resp = await ApiService.get(ApiService.ApiURLs.getAnnouncements);
+      const resp = await ApiService.get(ApiService.ApiURLs.getEvents);
       if (resp.status === 200 && resp.data?.data) {
         console.log(resp.data.data);
-        setAnnouncements(resp.data.data);
+        setEvents(resp.data.data);
       }
       setLoading(false);
     } catch (err) {
@@ -58,7 +50,7 @@ export const AnnouncementManagement = () => {
   };
 
   useEffect(() => {
-    getAnnouncements();
+    getEvents();
   }, []);
 
   return (
@@ -69,22 +61,22 @@ export const AnnouncementManagement = () => {
           setIsOpen(true);
         }}
       >
-        Add Announcement
+        Add Event
       </button>
 
+      <Table columns={columns} rows={events} />
+
       {isOpen ? (
-        <AnnouncementForm
-          getAnnouncements={getAnnouncements}
+        <EventManagementForm
           open={isOpen}
           onClose={() => {
             setIsOpen(false);
           }}
+          getEvents={getEvents}
         />
       ) : (
         <></>
       )}
-
-      <Table columns={columns} rows={announcements} />
     </>
   );
 };

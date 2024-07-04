@@ -1,11 +1,20 @@
-const mongoose = require("mongoose");
-const { BadRequestError } = require("../utils/error");
+const mongoose = require('mongoose');
+const { BadRequestError } = require('../utils/error');
+const { objectId } = require('../utils/mongo');
 
-const { "Student-Inquiry": StudentInquiry } = mongoose.models;
+const { 'Student-Inquiry': StudentInquiry } = mongoose.models;
 
 async function getStudentInquiries() {
   try {
-    const courses = await StudentInquiry.find({});
+    const courses = await StudentInquiry.find(
+      {},
+      {},
+      {
+        sort: {
+          updatedAt: -1,
+        },
+      }
+    ).populate('course');
 
     return courses;
   } catch (err) {
@@ -21,17 +30,17 @@ async function createStudentInquiry(body) {
       mobile,
       whatsapp,
       joiningDate,
-      dov,
+      dob,
       qualification,
       gender,
       reference,
       course,
     } = body;
 
-    const existingInquiry = await Course.findOne({ email });
+    const existingInquiry = await StudentInquiry.findOne({ email });
 
     if (existingInquiry?._id) {
-      throw new BadRequestError("Inquiry exists with given email.");
+      throw new BadRequestError('Inquiry exists with given email.');
     }
 
     const inquiryData = await StudentInquiry.create({
@@ -40,11 +49,11 @@ async function createStudentInquiry(body) {
       mobile,
       whatsapp,
       joiningDate,
-      dov,
+      dob,
       qualification,
       gender,
       reference,
-      course,
+      course: objectId(course),
     });
 
     return inquiryData;

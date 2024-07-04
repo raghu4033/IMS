@@ -4,20 +4,12 @@ export const AdminMenu = [
     label: "Dashboard",
   },
   {
-    key: "/manage-student",
-    label: "Manage Student",
-  },
-  {
     key: "/student-inquiry",
     label: "Student Inquiry",
   },
   {
     key: "/student-admission",
     label: "Student Admission",
-  },
-  {
-    key: "/faculty-admission",
-    label: "Faculty Admission",
   },
   {
     key: "/manage-faculty",

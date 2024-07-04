@@ -2,39 +2,29 @@ const { Schema, model } = require("mongoose");
 
 const announcementSchema = new Schema(
   {
-    user_id: {
-      type: String,
+    user: {
+      type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
-    notice_for: {
+    course: {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
+    },
+    subject: {
       type: String,
-      default: 'all'
+      required: true,
+      maxlength: 100,
     },
-    notice_sub: {
-      type: String,
-      required: true
-    },
-    notice_date: {
+    date: {
       type: Date,
-      required: true
+      required: true,
     },
-    notice_priority: {
+    description: {
       type: String,
-      default: 'normal'
+      required: true,
     },
-    notice_type: {
-      type: String,
-      default: 'general'
-    },
-    notice_tags: {
-      type: [String],
-      default: []
-    },
-    is_active: {
-      type: Boolean,
-      default: true
-    }
   },
   { timestamps: true }
 );
