@@ -1,41 +1,30 @@
 const { Schema, model } = require("mongoose");
 
-
-const User = require("./user.model");
-
 const announcementSchema = new Schema(
   {
-    user_id: {
-      type: String,
+    user: {
+      type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
-    notice_for: {
-      type: String,
-      default: 'all',
-      maxlength: 200
+    course: {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
     },
-    notice_sub: {
+    subject: {
       type: String,
       required: true,
-      maxlength: 100
+      maxlength: 100,
     },
-    notice_date: {
+    date: {
       type: Date,
-      required: true
+      required: true,
     },
-    notice_desc: {
+    description: {
       type: String,
-      required: true
+      required: true,
     },
-    notice_file: {
-      type: String, // Assuming you save file path as string
-      required: false // Assuming it's not required
-    },
-    is_active: {
-      type: Boolean,
-      default: true
-    }
   },
   { timestamps: true }
 );
