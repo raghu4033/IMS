@@ -30,6 +30,7 @@ async function login(body) {
       middleName: userData.middleName,
       lastName: userData.lastName,
       mobile: userData.mobile,
+      role: userData.role,
     };
 
     const token = jwt.sign(payload, Configs.JWT_SECRET, {
