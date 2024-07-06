@@ -38,7 +38,7 @@ module.exports = (server) => {
       ApiService.createAdminUser
     )
     .post(
-      '/user/student',
+      '/user/sttudent',
       validateBody(createStudentSchema),
       ApiService.createStudentUser
     );

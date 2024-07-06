@@ -3,6 +3,7 @@ import "./App.css";
 import ProtectedRoute from "./assets/Components/ProtectedRoutes";
 import DashboardPage from "./pages/DashboardPage";
 import StudentDashboardPage from "./pages/StudentDashboardPage";
+import FacultyDashboardPage from "./pages/FacultyDashboardPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
@@ -23,6 +24,14 @@ function App() {
           element={
             <ProtectedRoute>
               <StudentDashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="faculty-dashboard/*"
+          element={
+            <ProtectedRoute>
+              <FacultyDashboardPage />
             </ProtectedRoute>
           }
         />

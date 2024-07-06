@@ -7,9 +7,9 @@ export const Layout = ({ menu, children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   
-  // Retrieve user profile from local storage
-  const profile = JSON.parse(localStorage.getItem("ims:auth:profile") || "{}");
-  const userRole = profile.role || "";
+  const userRole = localStorage.getItem("ims:auth:role") || "";
+
+  console.log("User role:", userRole);
 
   // Determine class names based on user role
   const sidebarClassName = userRole === "ADMIN" 
