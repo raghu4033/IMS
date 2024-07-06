@@ -18,7 +18,71 @@
   scrollbar-width: none;
   position: relative;
 }
+.student-dashboard-sidebar {
+  width: 20%;
+  background-color: #4e73df;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.faculty-dashboard-sidebar {
+  width: 20%;
+  background-color: #4a5568; 
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
 
+.student-dashboard-header{
+    background-color: #e2e8f0;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      flex-direction: column;
+      gap: 10px;
+}
+.faculty-dashboard-header{
+  background-color: #cbd5e0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  flex-direction: column;
+  gap: 10px;
+}
+.student-sidebar-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding: 15px 0;
+  background-color: #4e73df;
+}
+.faculty-sidebar-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  padding: 15px 0;
+  background-color: #4a5568;
+}
 .sidebar-logo {
   display: flex;
   justify-content: center;
@@ -28,11 +92,17 @@
   background-color: #2a2e33;
 }
 
-.sidebar-logo img {
+.sidebar-logo img{
   width: 60%;
-  /* margin: 0 auto 20px auto; */
 }
 
+.student-sidebar-logo img {
+  width: 60%;
+}
+
+.faculty-sidebar-logo img {
+  width: 60%;
+}
 .sidebar-menu {
   margin-top: 62px;
   width: 100%;
