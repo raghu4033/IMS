@@ -4,31 +4,31 @@ export const StudentMenu = [
     label: "Dashboard",
   },
   {
-    key: "view-profile",
+    key: "student-profile",
     label: "View Profile",
   },
   {
-    key: "attandance",
+    key: "student-attandance",
     label: "Attandance",
   },
   {
-    key: "class-schedule",
+    key: "student-class-schedule",
     label: "Class Schedule",
   },
   {
-    key: "events",
+    key: "student-events",
     label: "Events",
   },
   {
-    key: "notice-board",
+    key: "student-announcements",
     label: "Notice Board",
   },
   {
-    key: "fees",
+    key: "student-fees",
     label: "Fees",
   },
   {
-    key: "generate-certificate",
+    key: "student-generate-certificate",
     label: "Generate Certificate",
   },
   {
