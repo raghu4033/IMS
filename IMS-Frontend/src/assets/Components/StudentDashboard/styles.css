@@ -1,0 +1,40 @@
+
+/* attandence */
+.attandence-card {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.6em; 
+}
+.total-sessions {
+    background-color: #007bff;
+}
+
+.present {
+    background-color: #28a745;
+}
+
+.absent {
+    background-color: #dc3545;
+}
+
+.percentage {
+    background-color: #ffc107;
+}
+
+.count {
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+.card-table th {
+    background-color: #4e73df;
+    color: #fff;
+    text-align: left;
+}
+
+/* attandence */
