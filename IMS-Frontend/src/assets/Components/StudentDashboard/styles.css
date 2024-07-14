@@ -38,3 +38,59 @@
 }
 
 /* attandence */
+
+/* fees */
+.download-btn {
+    background-color: #0056b3;
+    padding: 10px;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+.download-btn:hover {
+    background-color: #0056b3;
+    padding: 10px;
+    color: white;
+    border: 0;
+}
+
+.fees-summary-card {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #fff;
+}
+
+.fees-summary-total {
+    background-color: #293240;
+}
+
+.fees-summary-paid {
+    background-color: #17a2b8;
+}
+
+.fees-summary-remaining {
+    background-color: #ffc107;
+}
+
+.summary-content {
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+.summary-content p {
+    margin: 10px 0;
+    color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+    }
+}
+
+/* fees */
