@@ -1,4 +1,6 @@
-
+.dashboard-content{
+    overflow-y: scroll !important;
+}
 /* attandence */
 .attandence-card {
     flex: 1;
