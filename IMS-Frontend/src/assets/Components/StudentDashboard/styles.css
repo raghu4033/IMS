@@ -175,3 +175,84 @@
     color: #777;
   }
   /* fees invoice */
+/* Dashboard */
+.dashboard-main {
+  width: 100%;
+  flex: 1;
+  padding: 20px;
+}
+
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.dashboard-overview {
+  margin-bottom: 20px;
+}
+
+.widget-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.widget {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.widget h3 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.widget p {
+  margin: 10px 0 0;
+}
+
+/* Specific widget styles */
+.widget-profile {
+  background-color: #007bff; /* Blue */
+}
+
+.widget-attendance {
+  background-color: #28a745; /* Green */
+}
+
+.widget-schedule {
+  background-color: #ffc107; /* Yellow */
+}
+
+.widget-events {
+  background-color: #dc3545; /* Red */
+}
+
+.widget-notice {
+  background-color: #007bff; /* Blue */
+}
+
+.widget-fees {
+  background-color: #28a745; /* Green */
+}
+
+.widget-certificate {
+  background-color: #ffc107; /* Yellow */
+}
+
+.widget-change-password {
+  background-color: #dc3545; /* Red */
+}
+
+@media (max-width: 768px) {
+  .widget-container {
+    flex-direction: column;
+  }
+}
