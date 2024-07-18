@@ -6,33 +6,104 @@
 
 .dashboard-sidebar {
   width: 20%;
+  min-width: 250px;
   background-color: #2a2e33;
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 20px 0; */
+  padding: 20px 0;
   padding-bottom: 20px;
   box-sizing: border-box;
   overflow-y: auto;
   scrollbar-width: none;
   position: relative;
 }
+.student-dashboard-sidebar {
+  width: 20%;
+  min-width: 250px;
+  background-color: #4e73df;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.faculty-dashboard-sidebar {
+  width: 20%;
+  min-width: 250px;
+  background-color: #4a5568;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); */
+}
 
+.student-dashboard-header {
+  background-color: #e2e8f0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  position: relative;
+  gap: 10px;
+}
+.faculty-dashboard-header {
+  background-color: #cbd5e0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  position: relative;
+  gap: 10px;
+}
+.student-sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  /* padding: 15px 0; */
+  background-color: #4e73df;
+}
+.faculty-sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  /* padding: 15px 0; */
+  background-color: #4a5568;
+}
 .sidebar-logo {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  padding: 15px 0;
+  /* padding: 15px 0; */
   background-color: #2a2e33;
 }
 
 .sidebar-logo img {
-  width: 60%;
-  /* margin: 0 auto 20px auto; */
+  width: 45%;
 }
 
+.student-sidebar-logo img {
+  width: 45%;
+}
+
+.faculty-sidebar-logo img {
+  width: 45%;
+}
 .sidebar-menu {
   margin-top: 62px;
   width: 100%;
@@ -77,6 +148,7 @@
 }
 
 .dashboard-header {
+  height: 70px;
   background-color: #f1f1f1;
   padding: 10px 20px;
   font-size: 12px;
@@ -100,6 +172,11 @@
   align-items: center;
   cursor: pointer;
   margin-left: auto;
+  margin-right: 16px;
+}
+
+.logout {
+  cursor: pointer;
 }
 
 .user-logo {
@@ -148,6 +225,5 @@
   flex-grow: 1;
   padding: 20px;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
-
-

@@ -26,10 +26,12 @@ export default function LoginPage() {
 
   const login = async (data) => {
     try {
-      setLoading(true);
       const resp = await ApiService.post(ApiService.ApiURLs.Login, data);
       if (resp.status === 200 && resp.data?.data?.token) {
-        localStorage.setItem("ims:auth:token", resp.data?.data?.token || "");
+        const token = resp.data?.data?.token || {};
+        const role = resp.data?.data?.payload?.role || {};
+        localStorage.setItem("ims:auth:token", token);
+        localStorage.setItem("ims:auth:role", role);
         localStorage.setItem(
           "ims:auth:profile",
           JSON.stringify(resp.data?.data?.payload || {})

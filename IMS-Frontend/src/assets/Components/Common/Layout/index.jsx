@@ -6,7 +6,37 @@ import "./style.css";
 export const Layout = ({ menu, children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+
+  const userRole = localStorage.getItem("ims:auth:role") || "";
+  const userProfile = JSON.parse(localStorage.getItem("ims:auth:profile"));
+
+  console.log("User role:", userRole);
+
+  const onLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
+  // Determine class names based on user role
+  const sidebarClassName =
+    userRole === "ADMIN"
+      ? "dashboard-sidebar"
+      : userRole === "STUDENT"
+      ? "student-dashboard-sidebar"
+      : userRole === "FACULTY"
+      ? "faculty-dashboard-sidebar"
+      : "dashboard-sidebar";
+
+  const headerClassName = "dashboard-header";
+
+  const logoClassName =
+    userRole === "ADMIN"
+      ? "sidebar-logo"
+      : userRole === "STUDENT"
+      ? "student-sidebar-logo"
+      : userRole === "FACULTY"
+      ? "faculty-sidebar-logo"
+      : "sidebar-logo";
 
   const navigateToMenu = (url) => {
     navigate(url);
@@ -14,40 +44,40 @@ export const Layout = ({ menu, children }) => {
 
   return (
     <div className="dashboard-container">
-      <aside className="dashboard-sidebar">
-        <div className="sidebar-logo">
+      <aside className={sidebarClassName}>
+        <div className={logoClassName}>
           <img src={IMSDashboardLogo} alt="Logo" />
         </div>
         <nav className="sidebar-menu">
           <ul>
-            {menu.map((m, index) => {
-              console.log(location.pathname === m.url, location.pathname, m.key);
-              return (
-                <li key={index}>
-                  <span
-                    onClick={() => navigateToMenu(m.key)}
-                    className={location.pathname === m.key ? `active` : ""}
-                  >
-                    {m.label}
-                  </span>
-                </li>
-              );
-            })}
+            {menu.map((m, index) => (
+              <li key={index}>
+                <span
+                  onClick={() => navigateToMenu(m.key)}
+                  className={location.pathname === m.key ? `active` : ""}
+                >
+                  {m.label}
+                </span>
+              </li>
+            ))}
           </ul>
         </nav>
       </aside>
       <div className="dashboard-main">
-        <header className="dashboard-header">
+        <header className={headerClassName}>
           <div className="user-info" onClick={() => {}}>
-            <div className="user-logo">HS</div>
-            <span className="user-name">Harshad</span>
-            <div className="dropdown-menu">
-              <a href="#">Profile</a>
-              <a href="#">Change Password</a>
-              <a href="#">Logout</a>
-            </div>
+            <div className="user-logo">{userRole ? userRole[0] : "U"}</div>
+            <span className="user-name">
+              {[userProfile?.firstName, userProfile?.lastName]
+                .filter(Boolean)
+                .join(" ")}
+            </span>
           </div>
-          {/* <div className="address-bar">Your Address Here</div> */}
+          <div className="">
+            <span className="logout" onClick={onLogout}>
+              Logout
+            </span>
+          </div>
         </header>
         <main className="dashboard-content">{children}</main>
       </div>

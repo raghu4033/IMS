@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
-import { FeesManagementForm } from "./FeesManagementForm";
-import { Table } from "../../Common/Table";
+import "../styles.css";
 import moment from "moment";
+import { Table } from "../../Common/Table";
 
 const columns = [
   {
@@ -77,15 +77,20 @@ const columns = [
   },
 ];
 
-export const FeesManagement = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const StudentFees = () => {
   const [studentFees, setStudentFes] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const localStore = JSON.parse(
+    localStorage.getItem("ims:auth:profile") || "{}"
+  );
 
   const getStudentFees = async () => {
     try {
       setLoading(true);
-      const resp = await ApiService.get(ApiService.ApiURLs.getStudentFees);
+      const resp = await ApiService.get(
+        `${ApiService.ApiURLs.getStudentFees}?student=${localStore?._id}`
+      );
       if (resp.status === 200 && resp.data?.data) {
         console.log(resp.data.data);
         setStudentFes(resp.data.data);
@@ -98,35 +103,64 @@ export const FeesManagement = () => {
   };
 
   useEffect(() => {
-    getStudentFees();
-  }, []);
+    if (localStore?._id) getStudentFees();
+  }, [localStore?._id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
-      <div className="action-button">
-        <button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-          disabled={loading}
-        >
-          Fees Collection
-        </button>
+      <div className="card-container">
+        <div className="fees-summary-card fees-summary-total">
+          <div className="summary-content">
+            <p>
+              <strong>Total Fees:</strong> $
+              {studentFees.length
+                ? Number(
+                    studentFees[0]?.student?.totalFees || 0
+                  ).toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                  })
+                : "0"}
+            </p>
+          </div>
+        </div>
+        <div className="fees-summary-card fees-summary-paid">
+          <div className="summary-content">
+            <p>
+              <strong>Paid Fees:</strong> $
+              {Number(
+                studentFees.reduce(
+                  (prev, fees) => prev + Number(fees?.feesAmount || 0),
+                  0
+                )
+              ).toLocaleString("en-US", {
+                minimumFractionDigits: 0,
+              })}
+            </p>
+          </div>
+        </div>
+        <div className="fees-summary-card fees-summary-remaining">
+          <div className="summary-content">
+            <p>
+              <strong>Remaining Fees:</strong> $
+              {studentFees.length
+                ? Number(
+                    studentFees[0]?.student?.remainingFees || 0
+                  ).toLocaleString("en-US", {
+                    minimumFractionDigits: 0,
+                  })
+                : "0"}
+            </p>
+          </div>
+        </div>
       </div>
-
-      {isOpen ? (
-        <FeesManagementForm
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
-          getStudentFees={getStudentFees}
-        />
-      ) : (
-        <></>
-      )}
-      {!loading ? (
+      {studentFees[0]?.feesAmount ? (
         <Table columns={columns} rows={studentFees} />
       ) : (
-        <p>Loading...</p>
+        <></>
       )}
     </>
   );

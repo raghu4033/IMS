@@ -1,5 +1,6 @@
 input[type="text"],
 input[type="date"],
+input[type="datetime-local"],
 input[type="tel"],
 input[type="email"],
 input[type="password"],
@@ -16,7 +17,20 @@ select {
   border: 1px solid #ccc;
   outline: none;
   background-color: white;
-  color:black ;
+  color: black;
+}
+
+input[type="text"]:disabled,
+input[type="datetime-local"]:disabled,
+input[type="tel"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+textarea:disabled,
+input[type="number"]:disabled,
+input[type="file"]:disabled,
+input[type="time"]:disabled,
+select:disabled {
+  background-color: #eeeeee;
 }
 
 button {
@@ -59,8 +73,8 @@ label {
 
 .card-table-container {
   max-width: 100%;
-  margin: 20px;
-  padding: 20px;
+  margin: 20px 0;
+  /* padding: 20px; */
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -80,7 +94,7 @@ label {
 .card-table th,
 .card-table td {
   padding: 10px;
-  border-bottom: 1px solid #ccc  !important; 
+  border-bottom: 1px solid #ccc !important;
 }
 
 .card-table th {
@@ -91,4 +105,10 @@ label {
 
 .card-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
