@@ -1,38 +1,38 @@
 export const StudentMenu = [
   {
-    key: "dashboard",
+    key: "/dashboard",
     label: "Dashboard",
   },
   {
-    key: "student-profile",
+    key: "/student-profile",
     label: "View Profile",
   },
   {
-    key: "student-attandance",
+    key: "/student-attandance",
     label: "Attandance",
   },
   {
-    key: "student-class-schedule",
+    key: "/student-class-schedule",
     label: "Class Schedule",
   },
   {
-    key: "student-events",
+    key: "/student-events",
     label: "Events",
   },
   {
-    key: "student-announcements",
+    key: "/student-announcements",
     label: "Notice Board",
   },
   {
-    key: "student-fees",
+    key: "/student-fees",
     label: "Fees",
   },
   {
-    key: "student-generate-certificate",
+    key: "/student-generate-certificate",
     label: "Generate Certificate",
   },
   {
-    key: "project-submission",
+    key: "/project-submission",
     label: "Project Submission",
   },
 ];

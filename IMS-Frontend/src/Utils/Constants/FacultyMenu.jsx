@@ -1,30 +1,30 @@
 export const FacultyMenu = [
   {
-    key: "view-profile",
+    key: "/view-profile",
     label: "View Profile",
   },
   {
-    key: "student-information",
+    key: "/student-information",
     label: "View Student Information",
   },
   {
-    key: "attandance",
+    key: "/attandance",
     label: "Take Attendance",
   },
   {
-    key: "student-inquiry",
+    key: "/student-inquiry",
     label: "Take Inquiry",
   },
   {
-    key: "notice-board",
+    key: "/notice-board",
     label: "Notice Board",
   },
   {
-    key: "student-announcements",
+    key: "/student-announcements",
     label: "Student Announcements",
   },
   {
-    key: "capstone-submission",
+    key: "/capstone-submission",
     label: "Capstone Submission",
   },
 ];

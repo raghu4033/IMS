@@ -1,48 +1,44 @@
 const { Schema, model } = require("mongoose");
 
-
-const User = require("./user.model");
-
 const feesSchema = new Schema(
   {
-    student_id: {
-      type: String,
+    student: {
+      type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
-    installment_no: {
+    installmentNumber: {
       type: Number,
       required: true,
-      default: 1
+      default: 1,
     },
-    amount: {
+    feesAmount: {
       type: Number,
-      required: true
+      required: true,
     },
-    payment_date: {
+    paymentDate: {
       type: Date,
-      required: true
+      required: true,
     },
-    payment_type: {
+    paymentType: {
       type: String,
       required: true,
-      maxlength: 100
+      maxlength: 100,
     },
-    receipt_no: {
+    receiptNo: {
       type: Number,
       required: true,
-      unique: true
+      unique: true,
     },
-    fees_invoice: {
+    feesInvoice: {
       type: String,
-      required: true
-    }
+    },
   },
   { timestamps: true }
 );
 
 // Auto-increment for receipt_no
-feesSchema.pre('save', async function (next) {
+feesSchema.pre("save", async function (next) {
   if (this.isNew) {
     const lastFee = await this.constructor.findOne().sort({ receipt_no: -1 });
     this.receipt_no = lastFee ? lastFee.receipt_no + 1 : 1;
