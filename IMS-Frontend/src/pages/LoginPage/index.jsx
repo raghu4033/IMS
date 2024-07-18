@@ -32,14 +32,11 @@ export default function LoginPage() {
         const role = resp.data?.data?.payload?.role || {};
         localStorage.setItem("ims:auth:token", token);
         localStorage.setItem("ims:auth:role", role);
-        console.log(role)
-        if (role === "ADMIN") {
-          navigate("/");
-        } else if (role === "FACULTY") {
-          navigate("/faculty-dashboard");
-        } else if (role === "STUDENT") {
-          navigate("/student-dashboard");
-        }
+        localStorage.setItem(
+          "ims:auth:profile",
+          JSON.stringify(resp.data?.data?.payload || {})
+        );
+        navigate("/");
       }
       setLoading(false);
     } catch (err) {
