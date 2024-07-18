@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { Drawer } from "../../Common/Drawer";
-import ApiService from "../../../../Utils/ApiService";
-import { AnnouncementForm } from "./AnnouncementForm";
-import { Table } from "../../Common/Table";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import ApiService from "../../../../Utils/ApiService";
+import { Table } from "../../Common/Table";
+import { AnnouncementForm } from "./AnnouncementForm";
 
 const columns = [
   {
@@ -18,7 +17,9 @@ const columns = [
     label: "Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).format("DD MMMM YYYY");
+      return moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
     },
   },
   {
@@ -63,14 +64,16 @@ export const AnnouncementManagement = () => {
 
   return (
     <>
-      <button
-        disabled={loading}
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Add Announcement
-      </button>
+      <div className="action-button">
+        <button
+          disabled={loading}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Add Announcement
+        </button>
+      </div>
 
       {isOpen ? (
         <AnnouncementForm
@@ -84,7 +87,11 @@ export const AnnouncementManagement = () => {
         <></>
       )}
 
-      <Table columns={columns} rows={announcements} />
+      {!loading ? (
+        <Table columns={columns} rows={announcements} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 };
