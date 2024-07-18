@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require("@hapi/joi");
 
 const createAdminSchema = Joi.object({
   firstName: Joi.string().trim().required(),
@@ -10,25 +10,30 @@ const createAdminSchema = Joi.object({
 });
 
 const createFacultySchema = Joi.object({
+  department: Joi.string().trim().required(),
+  yearOfExperience: Joi.number().min(0).required(),
+  joiningDate: Joi.date().optional(),
+  qualification: Joi.string().trim().optional(),
+  salary: Joi.number().min(1).required(),
   firstName: Joi.string().trim().required(),
   middleName: Joi.string().trim().required(),
   lastName: Joi.string().trim().required(),
   email: Joi.string().trim().email().required(),
   dob: Joi.date().optional(),
   gender: Joi.string().trim().optional(),
-  aadhar: Joi.string()
-    .trim()
-    .optional()
-    .pattern(new RegExp('^[2-9]{1}[0-9]{3}s[0-9]{4}s[0-9]{4}$')),
-  address: Joi.string().trim().optional(),
+  cast: Joi.string().trim().optional(),
+  nationality: Joi.string().trim().optional(),
+  permanentAddress: Joi.string().trim().optional(),
+  presentAddress: Joi.string().trim().optional(),
   city: Joi.string().trim().optional(),
   pin: Joi.string().trim().optional(),
   mobile: Joi.string().trim().length(10).optional(),
-  academicYear: Joi.number().min(2000).max(new Date().getFullYear()).optional(),
+  email: Joi.string().trim().email().required(),
   bloodGroup: Joi.string().trim().optional(),
-  college: Joi.string().trim().optional(),
-  qualification: Joi.string().trim().optional(),
-  password: Joi.string().trim().required(),
+  bankName: Joi.string().trim().required(),
+  accountName: Joi.string().trim().required(),
+  ifscCode: Joi.string().trim().required(),
+  accountNumber: Joi.string().trim().required(),
 });
 
 const createStudentSchema = Joi.object({
@@ -49,7 +54,8 @@ const createStudentSchema = Joi.object({
   city: Joi.string().trim().optional(),
   pin: Joi.string().trim().optional(),
   academicYear: Joi.string().optional(),
-  bloodGroup: Joi.string().trim().optional(),
+  parentsName: Joi.string().trim().optional(),
+  parentsMobile: Joi.string().trim().length(10).optional(),
   totalFees: Joi.number().min(1).required(),
   batchName: Joi.string().trim().optional(),
   course: Joi.string().trim().hex().length(24).required(),
