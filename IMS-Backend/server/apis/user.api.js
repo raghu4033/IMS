@@ -1,12 +1,21 @@
-const { validateBody } = require('../middlewares/validator');
-const { createAdminSchema, createStudentSchema } = require('../schema/user.schama');
-const { getUsers, createAdminUser, createStudentUser } = require('../services/user.service');
+const { validateBody } = require("../middlewares/validator");
+const {
+  createAdminSchema,
+  createStudentSchema,
+  createFacultySchema,
+} = require("../schema/user.schama");
+const {
+  getUsers,
+  createAdminUser,
+  createStudentUser,
+  createFacultyUser,
+} = require("../services/user.service");
 
 const ApiService = {
   getUsers: async (req, res, next) => {
     try {
-      const users = await getUsers();
-      res.formattedResponse(200, 'Users fetch successfully', users);
+      const users = await getUsers({ query: req?.query || {} });
+      res.formattedResponse(200, "Users fetch successfully", users);
     } catch (err) {
       next(err);
     }
@@ -14,7 +23,7 @@ const ApiService = {
   createAdminUser: async (req, res, next) => {
     try {
       const users = await createAdminUser(req.body);
-      res.formattedResponse(200, 'User created successfully', users);
+      res.formattedResponse(200, "User created successfully", users);
     } catch (err) {
       next(err);
     }
@@ -22,7 +31,15 @@ const ApiService = {
   createStudentUser: async (req, res, next) => {
     try {
       const users = await createStudentUser(req.body);
-      res.formattedResponse(200, 'User created successfully', users);
+      res.formattedResponse(200, "User created successfully", users);
+    } catch (err) {
+      next(err);
+    }
+  },
+  createFacultyUser: async (req, res, next) => {
+    try {
+      const users = await createFacultyUser(req.body);
+      res.formattedResponse(200, "User created successfully", users);
     } catch (err) {
       next(err);
     }
@@ -31,15 +48,20 @@ const ApiService = {
 
 module.exports = (server) => {
   server
-    .get('/users', ApiService.getUsers)
+    .get("/users", ApiService.getUsers)
     .post(
-      '/user/admin',
+      "/user/admin",
       validateBody(createAdminSchema),
       ApiService.createAdminUser
     )
     .post(
-      '/user/sttudent',
+      "/user/student",
       validateBody(createStudentSchema),
       ApiService.createStudentUser
+    )
+    .post(
+      "/user/faculty",
+      validateBody(createFacultySchema),
+      ApiService.createFacultyUser
     );
 };

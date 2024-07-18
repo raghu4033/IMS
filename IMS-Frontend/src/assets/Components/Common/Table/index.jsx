@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import './style.css';
+import PropTypes from "prop-types";
+import "./style.css";
 
 export const Table = ({ columns, rows }) => {
   return (
@@ -10,21 +10,29 @@ export const Table = ({ columns, rows }) => {
             <table id="student-table">
               <thead>
                 <tr>
-                  {columns.map((c) => {
-                    return <th title={c.label}>{c.label}</th>;
+                  {columns.map((c, idx) => {
+                    return (
+                      <th title={c.label} key={idx}>
+                        {c.label}
+                      </th>
+                    );
                   })}
                 </tr>
               </thead>
               <tbody>
-                {rows.map((inqu) => {
+                {rows.map((inqu, idx) => {
                   return (
-                    <tr>
-                      {columns.map((c) => {
-                        let value = inqu?.[`${c.key}`] || 'N/A';
-                        if (typeof c.renderValue === 'function') {
+                    <tr key={idx}>
+                      {columns.map((c, ix) => {
+                        let value = inqu?.[`${c.key}`] || "N/A";
+                        if (typeof c.renderValue === "function") {
                           value = c.renderValue(inqu?.[`${c.key}`], inqu);
                         }
-                        return <td title={value}>{value}</td>;
+                        return (
+                          <td title={value} key={ix}>
+                            {value}
+                          </td>
+                        );
                       })}
                     </tr>
                   );
@@ -39,7 +47,7 @@ export const Table = ({ columns, rows }) => {
 };
 
 Table.propTypes = {
-  colums: PropTypes.arrayOf(
+  columns: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       key: PropTypes.string.isRequired,

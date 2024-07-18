@@ -6,35 +6,37 @@ import "./style.css";
 export const Layout = ({ menu, children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const userRole = localStorage.getItem("ims:auth:role") || "";
+  const userProfile = JSON.parse(localStorage.getItem("ims:auth:profile"));
 
   console.log("User role:", userRole);
 
+  const onLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   // Determine class names based on user role
-  const sidebarClassName = userRole === "ADMIN" 
-    ? "dashboard-sidebar" 
-    : userRole === "STUDENT" 
-    ? "student-dashboard-sidebar" 
-    : userRole === "FACULTY" 
-    ? "faculty-dashboard-sidebar" 
-    : "dashboard-sidebar";
+  const sidebarClassName =
+    userRole === "ADMIN"
+      ? "dashboard-sidebar"
+      : userRole === "STUDENT"
+      ? "student-dashboard-sidebar"
+      : userRole === "FACULTY"
+      ? "faculty-dashboard-sidebar"
+      : "dashboard-sidebar";
 
-  const headerClassName = userRole === "ADMIN" 
-    ? "dashboard-header" 
-    : userRole === "STUDENT" 
-    ? "student-dashboard-header" 
-    : userRole === "FACULTY" 
-    ? "faculty-dashboard-header" 
-    : "dashboard-header";
+  const headerClassName = "dashboard-header";
 
-  const logoClassName = userRole === "ADMIN"
-    ? "sidebar-logo"
-    : userRole === "STUDENT"
-    ? "student-sidebar-logo"
-    : userRole === "FACULTY"
-    ? "faculty-sidebar-logo"
-    : "sidebar-logo";
+  const logoClassName =
+    userRole === "ADMIN"
+      ? "sidebar-logo"
+      : userRole === "STUDENT"
+      ? "student-sidebar-logo"
+      : userRole === "FACULTY"
+      ? "faculty-sidebar-logo"
+      : "sidebar-logo";
 
   const navigateToMenu = (url) => {
     navigate(url);
@@ -64,13 +66,17 @@ export const Layout = ({ menu, children }) => {
       <div className="dashboard-main">
         <header className={headerClassName}>
           <div className="user-info" onClick={() => {}}>
-            <div className="user-logo">HS</div>
-            <span className="user-name">Harshad</span>
-            <div className="dropdown-menu">
-              <a href="#">Profile</a>
-              <a href="#">Change Password</a>
-              <a href="#">Logout</a>
-            </div>
+            <div className="user-logo">{userRole ? userRole[0] : "U"}</div>
+            <span className="user-name">
+              {[userProfile?.firstName, userProfile?.lastName]
+                .filter(Boolean)
+                .join(" ")}
+            </span>
+          </div>
+          <div className="">
+            <span className="logout" onClick={onLogout}>
+              Logout
+            </span>
           </div>
         </header>
         <main className="dashboard-content">{children}</main>

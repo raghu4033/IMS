@@ -17,7 +17,7 @@ async function getAnnouncements() {
   }
 }
 
-async function createAnnouncement(body) {
+async function createAnnouncement(body, reqUser) {
   try {
     const { user, course, subject, date, description } = body;
 
@@ -27,6 +27,7 @@ async function createAnnouncement(body) {
       subject,
       date,
       description,
+      createdBy: reqUser?._id,
     });
 
     return announcementData;

@@ -1,50 +1,54 @@
-import moment from 'moment/moment';
-import { useEffect, useState } from 'react';
-import ApiService from '../../../../Utils/ApiService';
-import { Table } from '../../Common/Table';
-import { StudentInquiryForm } from './StudentInquiryForm';
+import moment from "moment/moment";
+import { useEffect, useState } from "react";
+import ApiService from "../../../../Utils/ApiService";
+import { Table } from "../../Common/Table";
+import { StudentInquiryForm } from "./StudentInquiryForm";
 
 const columns = [
   {
-    label: 'Date',
-    key: 'joiningDate',
+    label: "Date",
+    key: "joiningDate",
     renderValue: (value) => {
-      return moment(value).format('DD MMMM YYYY');
+      return moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
     },
   },
   {
-    label: 'Full Name',
-    key: 'fullName',
+    label: "Full Name",
+    key: "fullName",
   },
   {
-    label: 'Email',
-    key: 'email',
+    label: "Email",
+    key: "email",
   },
   {
-    label: 'Mobile',
-    key: 'mobile',
+    label: "Mobile",
+    key: "mobile",
   },
   {
-    label: 'Whatsapp',
-    key: 'whatsapp',
+    label: "Whatsapp",
+    key: "whatsapp",
   },
   {
-    label: 'Course',
-    key: 'course',
+    label: "Course",
+    key: "course",
     renderValue: (value) => {
-      return value?.name || 'N/A';
+      return value?.name || "N/A";
     },
   },
   {
-    label: 'Date of Birth',
-    key: 'dob',
+    label: "Date of Birth",
+    key: "dob",
     renderValue: (value) => {
-      return moment(value).format('DD MMMM YYYY');
+      return moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
     },
   },
   {
-    label: 'Reference',
-    key: 'reference',
+    label: "Reference",
+    key: "reference",
   },
 ];
 
@@ -74,15 +78,21 @@ export const StudentInquiry = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          setIsOpen(true);
-        }}
-        disabled={loading}
-      >
-        Student Inquiry
-      </button>
-      <Table columns={columns} rows={studentInquiries} />
+      <div className="action-button">
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+          disabled={loading}
+        >
+          Student Inquiry
+        </button>
+      </div>
+      {!loading ? (
+        <Table columns={columns} rows={studentInquiries} />
+      ) : (
+        <p>Loading...</p>
+      )}
       {isOpen ? (
         <StudentInquiryForm
           getStudentInquiries={getStudentInquiries}
