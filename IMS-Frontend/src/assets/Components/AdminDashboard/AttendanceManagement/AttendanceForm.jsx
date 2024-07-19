@@ -30,7 +30,7 @@ export const AttendanceForm = ({ open, onClose, getAttendances }) => {
   const saveAttendances = async (data) => {
     try {
       setLoading(true);
-      const resp = await ApiService.post(ApiService.ApiURLs.saveClassSchedule, {
+      const resp = await ApiService.post(ApiService.ApiURLs.saveAttendance, {
         ...data,
       });
       if (resp.status === 200 && resp.data?.data) {
@@ -45,28 +45,57 @@ export const AttendanceForm = ({ open, onClose, getAttendances }) => {
     }
   };
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+
+  const { values, handleChange, handleSubmit, errors, setFieldValue } = useFormik({
     initialValues: {
       course: "",
-      faculty: "",
-      fromDate: "",
-      toDate: "",
-      classType: "",
-      subject: "",
+      date: "",
+      students: []
     },
     validationSchema: Yup.object({
       course: Yup.string().trim().length(24).required(),
-      faculty: Yup.string().trim().length(24).required(),
-      fromDate: Yup.date().required(),
-      toDate: Yup.date().required(),
-      classType: Yup.string().trim().required(),
-      subject: Yup.string().trim().required(),
+      date: Yup.date().required(),
+      students: Yup.array().of(
+        Yup.object().shape({
+          _id: Yup.string().trim().length(24).required(),
+          sid: Yup.number().required(),
+          name: Yup.string().trim().required(),
+          isPresent: Yup.boolean(),
+        })
+      )
     }),
     onSubmit: (data) => {
       console.log("data", data);
       saveAttendances(data);
     },
   });
+
+
+  const getStudentByCourse = async ({ courseId }) => {
+    try {
+      setLoading(true);
+      const resp = await ApiService.get(`${ApiService.ApiURLs.getUsers}?role=STUDENT&course=${courseId}`);
+      if (resp.status === 200 && resp.data?.data) {
+        setFieldValue("students", resp.data?.data?.map(({ sid, firstName, lastName, _id, mobile }) => ({
+          _id,
+          sid,
+          name: [firstName, lastName].filter(Boolean).join(" "),
+          mobile,
+          isPresent: true
+        })))
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (values.course && values.date) {
+      getStudentByCourse({ courseId: values.course })
+    }
+  }, [values.course, values.date])
 
   console.log(errors);
 
@@ -107,15 +136,16 @@ export const AttendanceForm = ({ open, onClose, getAttendances }) => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="attendance-date">Attendance Date:</label>
+            <label htmlFor="date">Attendance Date:</label>
             <input
               type="date"
-              id="attendance-date"
-              name="attendance-date"
-              required
+              id="date"
+              name="date"
+              value={values.date}
+              onChange={handleChange}
             />
           </div>
-          <div className="card-table">
+          {values.course && values.date && values.students.length ? <div className="card-table">
             <table id="attendance-table">
               <thead>
                 <tr>
@@ -126,30 +156,26 @@ export const AttendanceForm = ({ open, onClose, getAttendances }) => {
                 </tr>
               </thead>
               <tbody>
-                {/* Dummy Records */}
-                <tr>
-                  <td>1111111</td>
-                  <td>Harshad Satasiya</td>
-                  <td>1234567890</td>
-                  <td>
-                    <button className="attendance-btn edit-btn">Present</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1111112</td>
-                  <td>Manthan Patel</td>
-                  <td>9876543210</td>
-                  <td>
-                    <button className="attendance-btn delete-btn">
-                      Absent
-                    </button>
-                  </td>
-                </tr>
+                {values.students.map((stud) => {
+                  return <tr key={stud.sid}>
+                    <td>{stud.sid}</td>
+                    <td>{stud.name}</td>
+                    <td>{stud.mobile}</td>
+                    <td>
+                      <button className="attendance-btn edit-btn" onClick={() => {
+                        setFieldValue("students", values.students?.map((student) => ({
+                          ...student,
+                          isPresent: student?._id === stud?._id ? !student?.isPresent : student?.isPresent
+                        })))
+                      }}>{stud.isPresent ? "Present" : "Absent"}</button>
+                    </td>
+                  </tr>
+                })}
               </tbody>
             </table>
-          </div>
+          </div> : <></>}
         </div>
       </div>
-    </Drawer>
+    </Drawer >
   );
 };
