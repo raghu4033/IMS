@@ -31,8 +31,4 @@ export const StudentMenu = [
     key: "/student-generate-certificate",
     label: "Generate Certificate",
   },
-  {
-    key: "/project-submission",
-    label: "Project Submission",
-  },
 ];

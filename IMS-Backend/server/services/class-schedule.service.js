@@ -15,6 +15,8 @@ async function getClassSchedules(user, filters) {
     if (faculty) {
       filterQuery.faculty = faculty;
     }
+
+    console.log("filterQuery", filterQuery)
     const classSchedules = await ClassSchedule.find(
       filterQuery,
       {},

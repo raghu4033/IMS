@@ -9,7 +9,7 @@ const columns = [
     label: "Date",
     key: "joiningDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -41,7 +41,7 @@ const columns = [
     label: "Date of Birth",
     key: "dob",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
