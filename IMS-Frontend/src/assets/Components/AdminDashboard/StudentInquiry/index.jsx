@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { StudentInquiryForm } from "./StudentInquiryForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -91,7 +92,7 @@ export const StudentInquiry = () => {
       {!loading ? (
         <Table columns={columns} rows={studentInquiries} />
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
       {isOpen ? (
         <StudentInquiryForm
