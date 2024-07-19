@@ -8,9 +8,9 @@ const { User } = mongoose.models;
 
 async function getUsers({ query }) {
   try {
-    const { role } = query;
+    const { role, course } = query;
     const users = await User.find(
-      { role },
+      { role, course },
       { password: 0 },
       { sort: { updatedAt: -1 } }
     ).populate("course");
