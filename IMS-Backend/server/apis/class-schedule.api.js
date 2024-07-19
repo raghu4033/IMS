@@ -3,12 +3,10 @@ const { validateBody } = require("../middlewares/validator");
 const {
   createClassScheduleSchema,
 } = require("../schema/class-schedule.schema");
-const { createFeeInstallmentSchema } = require("../schema/fee.schema");
 const {
   getClassSchedules,
   createClassSchedule,
 } = require("../services/class-schedule.service");
-const { createFeeInstallment, getFees } = require("../services/fees.service");
 
 const ApiService = {
   getClassSchedules: async (req, res, next) => {

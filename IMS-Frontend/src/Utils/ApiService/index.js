@@ -26,6 +26,7 @@ axiosInstance.interceptors.response.use(
 
 const ApiURLs = {
   Login: "login",
+  getUserProfile: 'profile',
   getCourses: "courses",
   saveStudentInquiries: "student-inquiry",
   getStudentInquiries: "student-inquiries",
@@ -41,6 +42,7 @@ const ApiURLs = {
   saveClassSchedule: "class-schedule",
   getClassSchedules: "classes",
   getAttendances: "attendances",
+  saveAttendance: "attendance"
 };
 
 export default {

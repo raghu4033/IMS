@@ -36,7 +36,14 @@ export default function LoginPage() {
           "ims:auth:profile",
           JSON.stringify(resp.data?.data?.payload || {})
         );
-        navigate("/");
+        console.log(role)
+        if (role === "ADMIN") {
+          navigate("/");
+        } else if (role === "FACULTY") {
+          navigate("/view-profile");
+        } else if (role === "STUDENT") {
+          navigate("/student-profile");
+        }
       }
       setLoading(false);
     } catch (err) {

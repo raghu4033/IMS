@@ -17,7 +17,7 @@ const columns = [
     label: "Event Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },

@@ -49,7 +49,7 @@ const columns = [
     label: "Payment Date",
     key: "paymentDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },

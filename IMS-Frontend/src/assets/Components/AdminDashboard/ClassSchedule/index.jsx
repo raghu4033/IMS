@@ -23,7 +23,7 @@ const columns = [
     label: "From",
     key: "fromDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY HH:mm A")
         : "N/A";
     },
@@ -32,7 +32,7 @@ const columns = [
     label: "To",
     key: "toDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY HH:mm A")
         : "N/A";
     },
