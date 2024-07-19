@@ -6,7 +6,7 @@ export const StudentAattandance = () => {
   return (
     <>
       <div className="card-table-container">
-        <h2 className="attendance-summary">Attendance Summary</h2>
+        <h2 className="form-heading">Attendance Summary</h2>
         <hr />
         <div className="summary-cards">
           <div className="attandence-card total-sessions">
@@ -27,9 +27,9 @@ export const StudentAattandance = () => {
           </div>
         </div>
       </div>
+      <hr />
       <div className="card-table-container">
         <h2 className="form-heading">Attendance Details</h2>
-        <hr />
         <div className="card-table">
           <table id="attendance-table">
             <thead>
