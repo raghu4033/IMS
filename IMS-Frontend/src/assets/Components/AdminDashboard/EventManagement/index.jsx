@@ -17,7 +17,9 @@ const columns = [
     label: "Event Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).format("DD MMMM YYYY hh:mm A");
+      return moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
     },
   },
   {
@@ -55,16 +57,18 @@ export const EventManagement = () => {
 
   return (
     <>
-      <button
-        disabled={loading}
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Add Event
-      </button>
+      <div className="action-button">
+        <button
+          disabled={loading}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Add Event
+        </button>
+      </div>
 
-      <Table columns={columns} rows={events} />
+      {!loading ? <Table columns={columns} rows={events} /> : <p>Loading...</p>}
 
       {isOpen ? (
         <EventManagementForm
