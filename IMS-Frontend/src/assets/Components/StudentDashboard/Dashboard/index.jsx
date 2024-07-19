@@ -1,6 +1,6 @@
 export const Dashboard = () => {
   return (
-    <main className="dashboard-main">
+    <main className="dashboard-main dashboard-custome">
       <section className="dashboard-overview">
         <div className="overview-card dashboard-card">
           <h2>Hello Harshadkumar, welcome back!</h2>

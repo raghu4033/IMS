@@ -73,7 +73,6 @@ export const StudentAdmissionForm = ({
       parentsName: '',
       parentsMobile: '',
       totalFees: '',
-      qualification: '',
       batchName: '',
       course: '',
     },
@@ -105,6 +104,8 @@ export const StudentAdmissionForm = ({
       saveStudentAdmission(data);
     },
   });
+
+  console.log("errors", errors)
   
   return (
     <Drawer
