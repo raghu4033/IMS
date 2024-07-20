@@ -1,0 +1,95 @@
+.ims-login-body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #7267EF;
+}
+
+.ims-login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ims-login-box {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.ims-login-box .ims-login-heading {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ims-login-box .ims-login-logo {
+    width: 140px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.ims-login-box .ims-login-input[type="text"],
+.ims-login-box .ims-login-input[type="password"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.ims-login-box .ims-login-input[type="submit"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #7267EF;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.ims-login-box .ims-login-input[type="submit"]:hover {
+    background-color: #5d52cf;
+}
+
+.ims-login-box .ims-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ims-login-box .ims-forgot-password {
+    color: #333;
+    text-decoration: none;
+}
+
+.ims-login-box .ims-buttons {
+    display: flex;
+}
+
+.ims-login-box .ims-buttons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #7267EF;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.ims-login-box .ims-buttons button:last-child {
+    margin-right: 0;
+}
+
+.ims-login-box .ims-buttons button:hover {
+    background-color: #5d52cf;
+}
+

@@ -81,7 +81,7 @@ export default function LoginPage() {
           </button>
         </form>
         <div className="ims-links">
-          <a href="#" className="ims-forgot-password">
+        <a href="/forgot-password" className="ims-forgot-password">
             Forgot password?
           </a>
         </div>
