@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { AnnouncementForm } from "./AnnouncementForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -90,7 +91,7 @@ export const AnnouncementManagement = () => {
       {!loading ? (
         <Table columns={columns} rows={announcements} title="Announcements List"/>
       ) : (
-        <p>Loading...</p>
+        <Loader/>
       )}
     </>
   );

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { AttendanceForm } from "./AttendanceForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -81,7 +82,7 @@ export const AttendanceManagement = () => {
         </button>
       </div>
 
-      {!loading ? <Table rows={attendances} columns={columns} title="Student Attendances List" /> : <></>}
+      {!loading ? <Table rows={attendances} columns={columns} title="Student Attendances List" /> : <Loader/>}
 
       {isOpen ? (
         <AttendanceForm
