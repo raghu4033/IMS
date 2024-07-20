@@ -1,0 +1,112 @@
+.faculty-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f3f4f6;
+  font-family: 'Arial', sans-serif;
+}
+
+.clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+  background: linear-gradient(135deg, #4a5568, #2d3748);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.clock-time {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.faculty-dashboard-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.stats-container {
+  display: flex;
+}
+
+.stats-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #4a5568;
+  min-width: 200px;
+  border: 2px solid #3679ed;
+}
+
+.stats-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stats-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.student-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.upcoming-events-section {
+  background: white;
+  border: 2px solid #ed8936;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  color: #4a5568;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.inquiry-list, .event-list, .announcement-list {
+  list-style: none;
+  padding: 0;
+}
+
+.inquiry-item, .event-item, .announcement-item {
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ed8936;
+}
+
+.recent-notifications-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.recent-activities-section, .notifications-section {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 48%;
+  color: #4a5568;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f56565;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
