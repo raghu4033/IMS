@@ -68,7 +68,7 @@ export const EventManagement = () => {
         </button>
       </div>
 
-      {!loading ? <Table columns={columns} rows={events} /> : <p>Loading...</p>}
+      {!loading ? <Table columns={columns} rows={events} title="Upcoming Event List" /> : <p>Loading...</p>}
 
       {isOpen ? (
         <EventManagementForm

@@ -81,7 +81,7 @@ export const AttendanceManagement = () => {
         </button>
       </div>
 
-      {!loading ? <Table rows={attendances} columns={columns} /> : <></>}
+      {!loading ? <Table rows={attendances} columns={columns} title="Student Attendances List" /> : <></>}
 
       {isOpen ? (
         <AttendanceForm

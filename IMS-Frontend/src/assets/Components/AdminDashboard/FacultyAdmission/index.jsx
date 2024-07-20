@@ -122,7 +122,7 @@ export const FacultyAdmission = () => {
       )}
 
       {!loading ? (
-        <Table columns={columns} rows={facultyAdmissions} />
+        <Table columns={columns} rows={facultyAdmissions} title="Faculty List" />
       ) : (
         <p>Loading...</p>
       )}

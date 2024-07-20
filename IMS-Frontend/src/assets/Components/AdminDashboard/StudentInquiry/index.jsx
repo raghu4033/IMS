@@ -90,7 +90,7 @@ export const StudentInquiry = () => {
         </button>
       </div>
       {!loading ? (
-        <Table columns={columns} rows={studentInquiries} />
+        <Table columns={columns} rows={studentInquiries} title="Student Inquiry"/>
       ) : (
         <Loader />
       )}

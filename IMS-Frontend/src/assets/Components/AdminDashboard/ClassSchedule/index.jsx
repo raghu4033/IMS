@@ -95,7 +95,7 @@ export const ClassSchedule = () => {
       )}
 
       {!loading ? (
-        <Table rows={classes} columns={columns} />
+        <Table rows={classes} columns={columns} title="Class Schedules List" />
       ) : (
         <p>Loading...</p>
       )}

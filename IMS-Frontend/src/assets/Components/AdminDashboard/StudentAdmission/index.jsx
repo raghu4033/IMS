@@ -165,7 +165,7 @@ export const StudentAdmission = () => {
         <></>
       )}
       {!loading ? (
-        <Table columns={columns} rows={studentAdmissions} />
+        <Table columns={columns} rows={studentAdmissions} title="Student Admission"/>
       ) : (
         <p>Loading...</p>
       )}

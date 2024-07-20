@@ -124,7 +124,7 @@ export const FeesManagement = () => {
         <></>
       )}
       {!loading ? (
-        <Table columns={columns} rows={studentFees} />
+        <Table columns={columns} rows={studentFees} title="Students Fees Records" />
       ) : (
         <p>Loading...</p>
       )}

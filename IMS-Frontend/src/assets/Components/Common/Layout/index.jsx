@@ -69,7 +69,9 @@ export const Layout = ({ menu, children }) => {
       </aside>
       <div className="dashboard-main">
         <header className={headerClassName}>
-          <h3>{activeMenuLabel}</h3>
+          <h3>Greetings,  {[userProfile?.firstName]
+                .filter(Boolean)
+                .join(" ")} </h3>
           <div className="user-info" onClick={() => {}}>
             <div className="user-logo">{userRole ? userRole[0] : "U"}</div>
             <span className="user-name">
