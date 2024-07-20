@@ -3,6 +3,7 @@ import ApiService from "../../../../Utils/ApiService";
 import { FeesManagementForm } from "./FeesManagementForm";
 import { Table } from "../../Common/Table";
 import moment from "moment";
+import Loader from "../../Common/Loader";
 
 const columns = [
   {
@@ -124,9 +125,9 @@ export const FeesManagement = () => {
         <></>
       )}
       {!loading ? (
-        <Table columns={columns} rows={studentFees} />
+        <Table columns={columns} rows={studentFees} title="Students Fees Records" />
       ) : (
-        <p>Loading...</p>
+        <Loader/>
       )}
     </>
   );

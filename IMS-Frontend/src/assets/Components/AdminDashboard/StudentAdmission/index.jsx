@@ -3,6 +3,7 @@ import moment from "moment";
 import { Table } from "../../Common/Table";
 import { StudentAdmissionForm } from "./StudentAdmissionForm";
 import ApiService from "../../../../Utils/ApiService";
+import Loader from "../../Common/Loader";
 
 const columns = [
   {
@@ -165,9 +166,9 @@ export const StudentAdmission = () => {
         <></>
       )}
       {!loading ? (
-        <Table columns={columns} rows={studentAdmissions} />
+        <Table columns={columns} rows={studentAdmissions} title="Student Admission"/>
       ) : (
-        <p>Loading...</p>
+       <Loader/>
       )}
     </>
   );

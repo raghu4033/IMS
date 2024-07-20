@@ -42,6 +42,10 @@ export const Layout = ({ menu, children }) => {
     navigate(url);
   };
 
+  // Find the current active menu item
+  const activeMenuItem = menu.find((m) => m.key === location.pathname);
+  const activeMenuLabel = activeMenuItem ? activeMenuItem.label : "Menu Name";
+
   return (
     <div className="dashboard-container">
       <aside className={sidebarClassName}>
@@ -65,6 +69,9 @@ export const Layout = ({ menu, children }) => {
       </aside>
       <div className="dashboard-main">
         <header className={headerClassName}>
+          <h3>Greetings,  {[userProfile?.firstName]
+                .filter(Boolean)
+                .join(" ")} </h3>
           <div className="user-info" onClick={() => {}}>
             <div className="user-logo">{userRole ? userRole[0] : "U"}</div>
             <span className="user-name">

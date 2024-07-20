@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import userLogo from "../../../Images/user.png";
 import { Drawer } from "../../Common/Drawer";
+import Loader from "../../Common/Loader"; 
 
 export const GenerateCertificate = () => {
   const [isOpen, setIsOpen] = useState(false);

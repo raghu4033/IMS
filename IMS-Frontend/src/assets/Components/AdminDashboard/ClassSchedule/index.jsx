@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { ClassScheduleForm } from "./ClassScheduleForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -95,9 +96,9 @@ export const ClassSchedule = () => {
       )}
 
       {!loading ? (
-        <Table rows={classes} columns={columns} />
+        <Table rows={classes} columns={columns} title="Class Schedules List" />
       ) : (
-        <p>Loading...</p>
+       <Loader/>
       )}
     </>
   );

@@ -3,6 +3,7 @@ import { EventManagementForm } from "./EventManagementForm";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import moment from "moment";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -68,7 +69,7 @@ export const EventManagement = () => {
         </button>
       </div>
 
-      {!loading ? <Table columns={columns} rows={events} /> : <p>Loading...</p>}
+      {!loading ? <Table columns={columns} rows={events} title="Upcoming Event List" /> : <Loader/>}
 
       {isOpen ? (
         <EventManagementForm
