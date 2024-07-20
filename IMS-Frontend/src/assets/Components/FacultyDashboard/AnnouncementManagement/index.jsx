@@ -88,7 +88,7 @@ export const AnnouncementManagement = () => {
       )}
 
       {!loading ? (
-        <Table columns={columns} rows={announcements} />
+        <Table columns={columns} rows={announcements} title="Upcoming Student Announcement" />
       ) : (
         <p>Loading...</p>
       )}
