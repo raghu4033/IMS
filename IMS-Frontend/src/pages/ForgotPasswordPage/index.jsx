@@ -2,25 +2,36 @@
 
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import * as Yup from 'yup';
 import ApiService from '../../Utils/ApiService';
-import './style.css'; 
 import IMSLogo from "../../assets/Images/logo.png";
+import './style.css';
 
 export default function ForgotPasswordPage() {
-  const [step, setStep] = useState('request'); 
+  const [step, setStep] = useState('request');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
-  const requestFormik = useFormik({
-    initialValues: { email: '' },
+  const resetFormik = useFormik({
+    initialValues: {
+      email: '', newPassword: '', confirmPassword: ''
+    },
     validationSchema: Yup.object({
       email: Yup.string().email().required('Email is required'),
+      newPassword: Yup.string().required('New Password is required'),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+        .required('Confirm Password is required'),
     }),
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await ApiService.post(ApiService.ApiURLs.ForgotPassword, values);
-        setStep('verify');
+        const resp = await ApiService.post(ApiService.ApiURLs.resetPassword, values);
+        if (resp.status === 200 && resp.data?.data?.changed) {
+          console.log("Password changed")
+          navigate("/login");
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -30,15 +41,19 @@ export default function ForgotPasswordPage() {
   });
 
   const verifyFormik = useFormik({
-    initialValues: { otp: '' },
+    initialValues: { email: '', otp: '' },
     validationSchema: Yup.object({
+      email: Yup.string().email().required('Email is required'),
       otp: Yup.string().required('OTP is required'),
     }),
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await ApiService.post(ApiService.ApiURLs.VerifyOTP, values);
-        setStep('reset');
+        const resp = await ApiService.post(ApiService.ApiURLs.forgotPasswordVerifyOTP, values);
+        if (resp.status === 200 && resp.data?.data?.verified) {
+          resetFormik.setFieldValue("email", values.email)
+          setStep('reset');
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -47,19 +62,20 @@ export default function ForgotPasswordPage() {
     },
   });
 
-  const resetFormik = useFormik({
-    initialValues: { newPassword: '', confirmPassword: '' },
+  const requestFormik = useFormik({
+    initialValues: { email: '' },
     validationSchema: Yup.object({
-      newPassword: Yup.string().required('New Password is required'),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
-        .required('Confirm Password is required'),
+      email: Yup.string().email().required('Email is required'),
     }),
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await ApiService.post(ApiService.ApiURLs.ResetPassword, values);
-        // Redirect or notify user of success
+        const resp = await ApiService.post(ApiService.ApiURLs.forgotPasswordSendOTP, values);
+        if (resp.status === 200 && resp.data?.data) {
+          verifyFormik.setFieldValue("email", values.email)
+          setStep('verify');
+        }
+
       } catch (error) {
         console.error(error);
       } finally {
@@ -94,6 +110,14 @@ export default function ForgotPasswordPage() {
             <input
               className="ims-login-input"
               type="text"
+              name="email"
+              placeholder="Email"
+              disabled
+              value={verifyFormik.values.email}
+            />
+            <input
+              className="ims-login-input"
+              type="text"
               name="otp"
               placeholder="OTP"
               onChange={verifyFormik.handleChange}
@@ -107,6 +131,14 @@ export default function ForgotPasswordPage() {
         {step === 'reset' && (
           <form onSubmit={resetFormik.handleSubmit}>
             <h2 className="ims-login-heading">Set New Password</h2>
+            <input
+              className="ims-login-input"
+              type="text"
+              name="email"
+              placeholder="Email"
+              disabled
+              value={resetFormik.values.email}
+            />
             <input
               className="ims-login-input"
               type="password"
