@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import ApiService from "../../../../Utils/ApiService";
 import './style.css';
 
 export const Dashboard = () => {
@@ -15,16 +17,27 @@ export const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Dummy records
-  const recentInquiries = [
-    { id: 1, name: 'Harshad', date: '2024-07-01' },
-    { id: 2, name: 'Manthan', date: '2024-07-02' },
-  ];
+  const [dashboardSummary, setDashboardSummary] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const recentSchedules = [
-    { id: 1, course: 'Math 101', date: '2024-07-01' },
-    { id: 2, course: 'History 201', date: '2024-07-02' },
-  ];
+  const getDashboardSummary = async () => {
+    try {
+      setLoading(true);
+      const resp = await ApiService.get(ApiService.ApiURLs.dashboardSummary);
+      if (resp.status === 200 && resp.data?.data) {
+        console.log(resp.data.data);
+        setDashboardSummary(resp.data.data);
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getDashboardSummary();
+  }, []);
 
   return (
     <div className="admin-dashboard">
@@ -34,71 +47,67 @@ export const Dashboard = () => {
       <div className="dashboard-stats">
         <div className="stats-box stats-students">
           <h3 className="stats-title">Total Students</h3>
-          <p className="stats-value">1500</p>
+          <p className="stats-value">{dashboardSummary?.totalStudents ?? "N/A"}</p>
         </div>
         <div className="stats-box stats-faculty">
           <h3 className="stats-title">Total Faculty</h3>
-          <p className="stats-value">100</p>
+          <p className="stats-value">{dashboardSummary?.totalFaculties ?? "N/A"}</p>
         </div>
         <div className="stats-box stats-fees">
           <h3 className="stats-title">Total Fees</h3>
-          <p className="stats-value">$200,000</p>
+          <p className="stats-value">{dashboardSummary?.totalFees ? `$ ${Number(dashboardSummary?.totalFees).toLocaleString("en-US", {
+            minimumFractionDigits: 0,
+          })}` : "N/A"}</p>
         </div>
         <div className="stats-box stats-events">
           <h3 className="stats-title">Total Events</h3>
-          <p className="stats-value">25</p>
+          <p className="stats-value">{dashboardSummary?.totalEvents ?? "N/A"}</p>
         </div>
       </div>
-     
+
       <div className="recent-section">
-        <div className="recent recent-inquiries">
+        {dashboardSummary?.latest2Inquiry ? <div className="recent recent-inquiries">
           <h3 className="recent-title">Recent Inquiries</h3>
           <ul>
-            {recentInquiries.map(inquiry => (
-              <li key={inquiry.id}>
-                <span>{inquiry.name}</span>
-                <span>{inquiry.course}</span>
-                <span>{inquiry.date}</span>
+            {dashboardSummary?.latest2Inquiry?.map(inquiry => (
+              <li key={inquiry._id}>
+                <span>{inquiry?.fullName || "N/A"}</span>
+                {/* <span>{inquiry.course}</span> */}
+                <span>{inquiry?.joiningDate && moment(inquiry?.joiningDate).isValid()
+                  ? moment(inquiry?.joiningDate).format("DD MMMM YYYY")
+                  : "N/A"}</span>
               </li>
             ))}
           </ul>
-        </div>
-        <div className="recent recent-schedule">
+        </div> : <></>}
+        {dashboardSummary?.latest2ClassSchedule ? <div className="recent recent-inquiries">
           <h3 className="recent-title">Recent Schedules</h3>
           <ul>
-            {recentSchedules.map(schedule => (
-              <li key={schedule.id}>
-                <span>{schedule.title}</span>
-                <span>{schedule.time}</span>
-                <span>{schedule.date}</span>
+            {dashboardSummary?.latest2ClassSchedule?.map(event => (
+              <li key={event._id}>
+                <span>{event?.course?.name || "N/A"}</span>
+                {/* <span>{event.course}</span> */}
+                <span>{event?.fromDate && moment(event?.fromDate).isValid()
+                  ? moment(event?.fromDate).format("DD MMMM YYYY")
+                  : "N/A"}</span>
               </li>
             ))}
           </ul>
-        </div>
-        <div className="recent recent-inquiries">
+        </div> : <></>}
+        {dashboardSummary?.latest2Event ? <div className="recent recent-inquiries">
           <h3 className="recent-title">Recent Inquiries</h3>
           <ul>
-            {recentInquiries.map(inquiry => (
-              <li key={inquiry.id}>
-                <span>{inquiry.name}</span>
-                <span>{inquiry.course}</span>
-                <span>{inquiry.date}</span>
+            {dashboardSummary?.latest2Event?.map(event => (
+              <li key={event._id}>
+                <span>{event?.name || "N/A"}</span>
+                {/* <span>{event.course}</span> */}
+                <span>{event?.date && moment(event?.date).isValid()
+                  ? moment(event?.date).format("DD MMMM YYYY")
+                  : "N/A"}</span>
               </li>
             ))}
           </ul>
-        </div>
-        <div className="recent recent-schedule">
-          <h3 className="recent-title">Recent Announcements</h3>
-          <ul>
-            {recentSchedules.map(schedule => (
-              <li key={schedule.id}>
-                <span>{schedule.title}</span>
-                <span>{schedule.time}</span>
-                <span>{schedule.date}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </div> : <></>}
       </div>
     </div>
   );
