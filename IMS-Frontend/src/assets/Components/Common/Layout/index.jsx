@@ -43,8 +43,8 @@ export const Layout = ({ menu, children }) => {
   };
 
   // Find the current active menu item
-  const activeMenuItem = menu.find((m) => m.key === location.pathname);
-  const activeMenuLabel = activeMenuItem ? activeMenuItem.label : "Menu Name";
+  // const activeMenuItem = menu.find((m) => m.key === location.pathname);
+  // const activeMenuLabel = activeMenuItem ? activeMenuItem.label : "Menu Name";
 
   return (
     <div className="dashboard-container">
