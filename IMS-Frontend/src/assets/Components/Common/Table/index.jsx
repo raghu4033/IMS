@@ -5,7 +5,7 @@ export const Table = ({ columns, rows, title }) => {
   return (
     <div>
       <div className="card-table-container">
-      <h2 class="table-heading">{title}</h2>
+      <h2 className="table-heading">{title}</h2>
       <hr/>
         <div className="card-table">
           <div className="table-responsive">

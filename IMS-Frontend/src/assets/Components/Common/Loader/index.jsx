@@ -1,4 +1,3 @@
-import React from "react";
 import LoaderImg from "../../../Images/loaderimage.png";
 import "./Loader.css";
 
