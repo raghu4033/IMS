@@ -42,7 +42,10 @@ const ApiURLs = {
   saveClassSchedule: "class-schedule",
   getClassSchedules: "classes",
   getAttendances: "attendances",
-  saveAttendance: "attendance"
+  saveAttendance: "attendance",
+  forgotPasswordSendOTP: 'forgot-password-otp',
+  forgotPasswordVerifyOTP: 'forgot-password-verify-otp',
+  resetPassword: "reset-password",
 };
 
 export default {

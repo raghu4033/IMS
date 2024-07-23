@@ -81,9 +81,9 @@ export default function LoginPage() {
           </button>
         </form>
         <div className="ims-links">
-        <a href="/forgot-password" className="ims-forgot-password">
+          <span onClick={() => navigate("/forgot-password")} className="ims-forgot-password">
             Forgot password?
-          </a>
+          </span>
         </div>
       </div>
     </div>
