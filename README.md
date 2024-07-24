@@ -66,14 +66,38 @@ npm run dev
 
 ### The frontend will run on port 5173.
 
+# Databse access
+ 
+## Tocredentials for MongoDB Compass following credentials:
+
+```bash
+Connection String : mongodb+srv://harshad:Raghu4033@ims.wu6ftn2.mongodb.net/
+Database Name: institute_master
+User: harshad
+Pass: Raghu4033
+```
+
 # Admin Credentials
 ## To access the admin panel, use the following credentials:
 
 ```bash
-User: Admin@admin.com
+User: admin@admin.com
 Pass: Admin@123
 ```
+# Student Credentials
+## To access the student panel, use the following credentials:
 
+```bash
+User: student@student.com
+Pass: Admin@123
+```
+# Faculty Credentials
+## To access the faculty panel, use the following credentials:
+
+```bash
+User: faculty@faculty.com
+Pass: Admin@123
+```
 
 # UI Components
 ## For the UI part, you can see all the UI components in the UI folder.
