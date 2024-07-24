@@ -43,9 +43,12 @@ const ApiURLs = {
   getClassSchedules: "classes",
   getAttendances: "attendances",
   saveAttendance: "attendance",
+  getCertificates: "certificates",
+  saveCertificate: "certificate",
   forgotPasswordSendOTP: 'forgot-password-otp',
   forgotPasswordVerifyOTP: 'forgot-password-verify-otp',
   resetPassword: "reset-password",
+  dashboardSummary: 'dashboard-summary'
 };
 
 export default {
