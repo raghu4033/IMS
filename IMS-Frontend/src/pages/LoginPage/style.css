@@ -41,6 +41,7 @@
   color: #333;
   text-decoration: none;
   font-size: 14px;
+  cursor: pointer;
 }
 
 .ims-login-box .ims-buttons {

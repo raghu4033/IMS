@@ -1,5 +1,9 @@
 export const FacultyMenu = [
   {
+    key: "/dashboard",
+    label: "Dashboard",
+  },
+  {
     key: "/view-profile",
     label: "View Profile",
   },
@@ -8,23 +12,23 @@ export const FacultyMenu = [
     label: "View Student Information",
   },
   {
-    key: "/attandance",
+    key: "/attendances",
     label: "Take Attendance",
   },
   {
     key: "/student-inquiry",
     label: "Take Inquiry",
   },
+  // {
+  //   key: "/notice-board",
+  //   label: "Notice Board",
+  // },
   {
     key: "/notice-board",
-    label: "Notice Board",
-  },
-  {
-    key: "/student-announcements",
     label: "Student Announcements",
   },
   {
-    key: "/capstone-submission",
+    key: "/submissions",
     label: "Capstone Submission",
   },
 ];

@@ -26,6 +26,7 @@ axiosInstance.interceptors.response.use(
 
 const ApiURLs = {
   Login: "login",
+  getUserProfile: 'profile',
   getCourses: "courses",
   saveStudentInquiries: "student-inquiry",
   getStudentInquiries: "student-inquiries",
@@ -41,6 +42,13 @@ const ApiURLs = {
   saveClassSchedule: "class-schedule",
   getClassSchedules: "classes",
   getAttendances: "attendances",
+  saveAttendance: "attendance",
+  getCertificates: "certificates",
+  saveCertificate: "certificate",
+  forgotPasswordSendOTP: 'forgot-password-otp',
+  forgotPasswordVerifyOTP: 'forgot-password-verify-otp',
+  resetPassword: "reset-password",
+  dashboardSummary: 'dashboard-summary'
 };
 
 export default {

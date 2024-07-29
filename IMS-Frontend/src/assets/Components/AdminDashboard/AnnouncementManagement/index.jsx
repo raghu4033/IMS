@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { AnnouncementForm } from "./AnnouncementForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -17,7 +18,7 @@ const columns = [
     label: "Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -88,9 +89,9 @@ export const AnnouncementManagement = () => {
       )}
 
       {!loading ? (
-        <Table columns={columns} rows={announcements} />
+        <Table columns={columns} rows={announcements} title="Announcements List"/>
       ) : (
-        <p>Loading...</p>
+        <Loader/>
       )}
     </>
   );

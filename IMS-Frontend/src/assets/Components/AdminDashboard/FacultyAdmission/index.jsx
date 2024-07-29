@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { FacultyAdmissionForm } from "./FacultyAdmissionForm";
+import Loader from "../../Common/Loader";
 
 const columns = [
   {
     label: "Joining Date",
     key: "joiningDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -34,7 +35,7 @@ const columns = [
     label: "Date of Birth",
     key: "dob",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -122,9 +123,9 @@ export const FacultyAdmission = () => {
       )}
 
       {!loading ? (
-        <Table columns={columns} rows={facultyAdmissions} />
+        <Table columns={columns} rows={facultyAdmissions} title="Faculty List" />
       ) : (
-        <p>Loading...</p>
+       <Loader/>
       )}
     </>
   );

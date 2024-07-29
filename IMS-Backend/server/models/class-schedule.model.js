@@ -1,48 +1,33 @@
 const { Schema, model } = require("mongoose");
 
-const User = require("./user.model");
-const Course = require("./course.model");
-
 const classScheduleSchema = new Schema(
   {
-    user_id: {
-      type: String,
+    faculty: {
+      type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     course: {
       type: String,
       ref: "Course",
-      required: true
+      required: true,
     },
     fromDate: {
       type: Date,
-      required: true
+      required: true,
     },
     toDate: {
       type: Date,
-      required: true
-    },
-    fromTime: {
-      type: String,
-      required: true
-    },
-    toTime: {
-      type: String,
-      required: true
+      required: true,
     },
     subject: {
       type: String,
-      required: true
+      required: true,
     },
     classType: {
       type: String,
-      required: true
+      required: true,
     },
-    faculty: {
-      type: String,
-      required: true
-    }
   },
   { timestamps: true }
 );

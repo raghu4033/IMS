@@ -1,7 +1,49 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
-import { Drawer } from "../../Common/Drawer";
+import { Table } from "../../Common/Table";
 import { AttendanceForm } from "./AttendanceForm";
+import Loader from "../../Common/Loader"; 
+
+const columns = [
+  {
+    label: "Faculty Name",
+    key: "faculty",
+    renderValue: (value) => {
+      return [value?.firstName, value?.lastName].filter(Boolean).join(" ");
+    },
+  },
+  {
+    label: "Student Name",
+    key: "student",
+    renderValue: (value) => {
+      return [value?.firstName, value?.lastName].filter(Boolean).join(" ");
+    },
+  },
+  {
+    label: "Course Name",
+    key: "course",
+    renderValue: (value) => {
+      return value?.name || "N/A";
+    },
+  },
+  {
+    label: "Date",
+    key: "date",
+    renderValue: (value) => {
+      return value && moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
+    },
+  },
+  {
+    label: "is Present?",
+    key: "isPresent",
+    renderValue: (value) => {
+      return value ? "Yes" : "No";
+    },
+  },
+];
 
 export const AttendanceManagement = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +81,8 @@ export const AttendanceManagement = () => {
           Take Attendance
         </button>
       </div>
+
+      {!loading ? <Table rows={attendances} columns={columns} title="Student Attendances List" /> : <Loader/>}
 
       {isOpen ? (
         <AttendanceForm

@@ -3,6 +3,7 @@ import { EventManagementForm } from "./EventManagementForm";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import moment from "moment";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
@@ -17,7 +18,9 @@ const columns = [
     label: "Event Date",
     key: "date",
     renderValue: (value) => {
-      return moment(value).format("DD MMMM YYYY hh:mm A");
+      return value && moment(value).isValid()
+        ? moment(value).format("DD MMMM YYYY")
+        : "N/A";
     },
   },
   {
@@ -55,16 +58,18 @@ export const EventManagement = () => {
 
   return (
     <>
-      <button
-        disabled={loading}
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Add Event
-      </button>
+      <div className="action-button">
+        <button
+          disabled={loading}
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Add Event
+        </button>
+      </div>
 
-      <Table columns={columns} rows={events} />
+      {!loading ? <Table columns={columns} rows={events} title="Upcoming Event List" /> : <Loader/>}
 
       {isOpen ? (
         <EventManagementForm

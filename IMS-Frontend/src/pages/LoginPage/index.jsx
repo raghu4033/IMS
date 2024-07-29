@@ -36,7 +36,14 @@ export default function LoginPage() {
           "ims:auth:profile",
           JSON.stringify(resp.data?.data?.payload || {})
         );
-        navigate("/");
+        console.log(role)
+        if (role === "ADMIN") {
+          navigate("/");
+        } else if (role === "FACULTY") {
+          navigate("/view-profile");
+        } else if (role === "STUDENT") {
+          navigate("/student-profile");
+        }
       }
       setLoading(false);
     } catch (err) {
@@ -74,9 +81,9 @@ export default function LoginPage() {
           </button>
         </form>
         <div className="ims-links">
-          <a href="#" className="ims-forgot-password">
+          <span onClick={() => navigate("/forgot-password")} className="ims-forgot-password">
             Forgot password?
-          </a>
+          </span>
         </div>
       </div>
     </div>

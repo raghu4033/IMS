@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import { Table } from "../../Common/Table";
 import { StudentInquiryForm } from "./StudentInquiryForm";
+import Loader from "../../Common/Loader"; 
 
 const columns = [
   {
     label: "Date",
     key: "joiningDate",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -41,7 +42,7 @@ const columns = [
     label: "Date of Birth",
     key: "dob",
     renderValue: (value) => {
-      return moment(value).isValid()
+      return value && moment(value).isValid()
         ? moment(value).format("DD MMMM YYYY")
         : "N/A";
     },
@@ -89,9 +90,9 @@ export const StudentInquiry = () => {
         </button>
       </div>
       {!loading ? (
-        <Table columns={columns} rows={studentInquiries} />
+        <Table columns={columns} rows={studentInquiries} title="Student Inquiry"/>
       ) : (
-        <p>Loading...</p>
+        <Loader />
       )}
       {isOpen ? (
         <StudentInquiryForm
