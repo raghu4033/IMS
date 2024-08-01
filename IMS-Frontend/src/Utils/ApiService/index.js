@@ -20,13 +20,13 @@ axiosInstance.interceptors.response.use(
       localStorage.clear();
       window.location = "/login";
     }
-    return error;
+    return Promise.reject(error);
   }
 );
 
 const ApiURLs = {
   Login: "login",
-  getUserProfile: 'profile',
+  getUserProfile: "profile",
   getCourses: "courses",
   saveStudentInquiries: "student-inquiry",
   getStudentInquiries: "student-inquiries",
@@ -45,10 +45,10 @@ const ApiURLs = {
   saveAttendance: "attendance",
   getCertificates: "certificates",
   saveCertificate: "certificate",
-  forgotPasswordSendOTP: 'forgot-password-otp',
-  forgotPasswordVerifyOTP: 'forgot-password-verify-otp',
+  forgotPasswordSendOTP: "forgot-password-otp",
+  forgotPasswordVerifyOTP: "forgot-password-verify-otp",
   resetPassword: "reset-password",
-  dashboardSummary: 'dashboard-summary'
+  dashboardSummary: "dashboard-summary",
 };
 
 export default {
