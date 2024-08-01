@@ -82,30 +82,3 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* ANTD overrides */
-:where(
-    .css-dev-only-do-not-override-17seli4
-  ).ant-menu-light.ant-menu-root.ant-menu-inline,
-:where(.css-dev-only-do-not-override-17seli4).ant-menu-light
-  > .ant-menu.ant-menu-root.ant-menu-inline,
-:where(
-    .css-dev-only-do-not-override-17seli4
-  ).ant-menu-light.ant-menu-root.ant-menu-vertical,
-:where(.css-dev-only-do-not-override-17seli4).ant-menu-light
-  > .ant-menu.ant-menu-root.ant-menu-vertical {
-  border-inline-end: none;
-}
