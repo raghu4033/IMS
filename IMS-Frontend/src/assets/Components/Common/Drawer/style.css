@@ -9,10 +9,14 @@
   min-width: 400px;
   height: 100%;
   position: fixed;
- 
+
   transition: transform var(--transition-speed) ease;
   z-index: 1000;
   scrollbar-width: none;
+}
+
+.student-certificate .drawer, .student-fees-invoice .drawer  {
+  width: 840px;
 }
 
 .drawer.left {
@@ -23,7 +27,7 @@
 
 .drawer-container.open .left {
   transform: translateX(0);
-   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .drawer.right {

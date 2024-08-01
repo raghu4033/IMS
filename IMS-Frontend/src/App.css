@@ -1,13 +1,13 @@
-input[type="text"],
-input[type="date"],
-input[type="datetime-local"],
-input[type="tel"],
-input[type="email"],
-input[type="password"],
+input[type='text'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='tel'],
+input[type='email'],
+input[type='password'],
 textarea,
-input[type="number"],
-input[type="file"],
-input[type="time"],
+input[type='number'],
+input[type='file'],
+input[type='time'],
 select {
   width: 100%;
   padding: 8px 10px;
@@ -20,15 +20,38 @@ select {
   color: black;
 }
 
-input[type="text"]:disabled,
-input[type="datetime-local"]:disabled,
-input[type="tel"]:disabled,
-input[type="email"]:disabled,
-input[type="password"]:disabled,
+.form-group input[type='text'],
+.form-group input[type='date'],
+.form-group input[type='datetime-local'],
+.form-group input[type='tel'],
+.form-group input[type='email'],
+.form-group input[type='password'],
+.form-group textarea,
+.form-group input[type='number'],
+.form-group input[type='file'],
+.form-group input[type='time'],
+.form-group select {
+  margin-bottom: 1px;
+}
+
+.error-text {
+  font-size: 14px;
+  color: #cc0000;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+input[type='text']:disabled,
+input[type='datetime-local']:disabled,
+input[type='tel']:disabled,
+input[type='email']:disabled,
+input[type='password']:disabled,
 textarea:disabled,
-input[type="number"]:disabled,
-input[type="file"]:disabled,
-input[type="time"]:disabled,
+input[type='number']:disabled,
+input[type='file']:disabled,
+input[type='time']:disabled,
 select:disabled {
   background-color: #eeeeee;
 }
@@ -39,11 +62,20 @@ button {
   font-size: 14px;
   border-radius: 5px;
   border: none;
-  background-color: #7267ef !important;
-  color: #fff !important;
+  background-color: #7267ef;
+  color: #fff;
   cursor: pointer;
   outline: none;
   transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #7a7a7a;
+  cursor: default;
+}
+
+button:disabled:hover {
+  background-color: #7a7a7a;
 }
 
 button.block {
@@ -54,14 +86,12 @@ button:hover {
   background-color: #5d52cf;
 }
 
-.form-group {
-  margin-bottom: 0px;
-}
-
 label {
   display: block;
   margin-bottom: 5px;
   color: black;
+  font-size: 14px;
+  font-weight: 500;
 }
 .form-heading {
   background-color: #7267ef;
@@ -111,4 +141,18 @@ label {
   display: flex;
   align-items: center;
   justify-content: end;
+}
+
+.section-heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.user-profile {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
 }
