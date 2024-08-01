@@ -3,8 +3,16 @@ const bcrypt = require("bcrypt");
 const { BadRequestError } = require("../utils/error");
 const moment = require("moment/moment");
 const { Constants } = require("../utils/constants");
+const { sendMail } = require("../utils/nodemailer");
 
-const { User, Fees, Event, 'Student-Inquiry': StudentInquiry, ClassSchedule } = mongoose.models;
+const {
+  User,
+  Fees,
+  Event,
+  "Student-Inquiry": StudentInquiry,
+  ClassSchedule,
+  Announcement,
+} = mongoose.models;
 
 async function getUsers({ query }) {
   try {
@@ -81,6 +89,7 @@ async function createStudentUser(body) {
       totalFees,
       batchName,
       course,
+      profileImage,
     } = body;
 
     const existUsers = await User.findOne({ email });
@@ -88,8 +97,8 @@ async function createStudentUser(body) {
     if (existUsers?._id) {
       throw new BadRequestError("User already exists with give email.");
     }
-
-    const hashPassword = bcrypt.hashSync("Admin@123", 10);
+    const password = "Student";
+    const hashPassword = bcrypt.hashSync(password, 10);
 
     const currentTimeStamp = moment().format("yyyyMMDD");
     const randomString = Math.floor(
@@ -127,6 +136,13 @@ async function createStudentUser(body) {
       remainingFees: totalFees,
       batchName,
       course,
+      profileImage,
+    });
+
+    sendMail({
+      to: email,
+      subject: "IMS Credentials",
+      text: `Email: ${email}, Password: ${password}`,
     });
 
     return userData;
@@ -161,6 +177,7 @@ async function createFacultyUser(body) {
       accountName,
       ifscCode,
       accountNumber,
+      profileImage,
     } = body;
 
     const existUsers = await User.findOne({ email });
@@ -169,7 +186,8 @@ async function createFacultyUser(body) {
       throw new BadRequestError("User already exists with give email.");
     }
 
-    const hashPassword = bcrypt.hashSync("Faculty@123", 10);
+    const password = "Faculty";
+    const hashPassword = bcrypt.hashSync(password, 10);
 
     const userData = await User.create({
       department,
@@ -197,6 +215,13 @@ async function createFacultyUser(body) {
       accountNumber,
       password: hashPassword,
       role: Constants.Role.FACULTY,
+      profileImage,
+    });
+
+    sendMail({
+      to: email,
+      subject: "IMS Credentials",
+      text: `Email: ${email}, Password: ${password}`,
     });
 
     return userData;
@@ -207,39 +232,91 @@ async function createFacultyUser(body) {
 
 async function getDashboardSummary(reqUser) {
   try {
-
-    if (reqUser?.role !== Constants.Role.ADMIN) {
-      throw new BadRequestError("You are not authorised to access this resource.");
+    if (
+      ![Constants.Role.ADMIN, Constants.Role.FACULTY].includes(
+        reqUser?.role || ""
+      )
+    ) {
+      throw new BadRequestError(
+        "You are not authorised to access this resource."
+      );
     }
 
-    const totalStudents = await User.countDocuments({
-      role: Constants.Role.STUDENT
-    })
+    let totalStudents = 0;
+    let totalFaculties = 0;
+    let totalFees = 0;
+    let totalEvents = 0;
+    let latest2ClassSchedule = [];
+    let latest2Announcements = [];
+    let latest5Students = [];
 
-    const totalFaculties = await User.countDocuments({
-      role: Constants.Role.FACULTY
-    })
+    if (reqUser?.role === Constants.Role.ADMIN) {
+      totalStudents = await User.countDocuments({
+        role: Constants.Role.STUDENT,
+      });
 
-    const totalEvents = await Event.countDocuments({})
+      totalFaculties = await User.countDocuments({
+        role: Constants.Role.FACULTY,
+      });
 
-    const totalFees = await Fees.aggregate().group({
-      _id: null,
-      total: {
-        $sum: "$feesAmount"
-      }
-    });
+      totalFees = await Fees.aggregate().group({
+        _id: null,
+        total: {
+          $sum: "$feesAmount",
+        },
+      });
 
-    const latest2Inquiry = await StudentInquiry.find({}, {
-      name: 1, createdAt: 1, joiningDate: 1, fullName: 1
-    }, { sort: { createdAt: -1 }, limit: 2 })
+      totalEvents = await Event.countDocuments({});
 
-    const latest2Event = await Event.find({}, {
-      name: 1, date: 1
-    }, { sort: { createdAt: -1 }, limit: 2 })
+      latest2ClassSchedule = await ClassSchedule.find(
+        {},
+        {
+          fromDate: 1,
+          course: 1,
+        },
+        { sort: { fromDate: -1 }, limit: 2 }
+      ).populate("course", "name");
+    }
 
-    const latest2ClassSchedule = await ClassSchedule.find({}, {
-      fromDate: 1, course: 1
-    }, { sort: { createdAt: -1 }, limit: 2 }).populate("course", "name")
+    if (reqUser?.role === Constants.Role.FACULTY) {
+      latest2Announcements = await Announcement.find(
+        {},
+        {
+          subject: 1,
+          date: 1,
+        },
+        { sort: { date: -1 }, limit: 2 }
+      );
+      latest5Students = await await User.find(
+        {
+          role: Constants.Role.STUDENT,
+        },
+        { firstName: 1, lastName: 1, sid: 1 },
+        { sort: { createdAt: -1 }, limit: 5 }
+      );
+    }
+
+    const latest2Inquiry = await StudentInquiry.find(
+      {},
+      {
+        name: 1,
+        createdAt: 1,
+        joiningDate: 1,
+        fullName: 1,
+        email: 1,
+        mobile: 1,
+      },
+      { sort: { createdAt: -1 }, limit: 2 }
+    );
+
+    const latest2Event = await Event.find(
+      {},
+      {
+        name: 1,
+        date: 1,
+      },
+      { sort: { date: -1 }, limit: 2 }
+    );
 
     return {
       totalStudents,
@@ -248,8 +325,10 @@ async function getDashboardSummary(reqUser) {
       totalEvents,
       latest2Inquiry,
       latest2Event,
-      latest2ClassSchedule
-    }
+      latest2ClassSchedule,
+      latest2Announcements,
+      latest5Students,
+    };
   } catch (err) {
     return Promise.reject(err);
   }
@@ -260,5 +339,5 @@ module.exports = {
   createAdminUser,
   createStudentUser,
   createFacultyUser,
-  getDashboardSummary
+  getDashboardSummary,
 };

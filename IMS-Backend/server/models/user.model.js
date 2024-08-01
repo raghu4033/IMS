@@ -60,6 +60,7 @@ const schema = new Schema(
     department: { type: String },
     yearOfExperience: { type: Number },
     qualification: { type: String },
+    profileImage: { type: String },
   },
   { timestamps: true }
 );
