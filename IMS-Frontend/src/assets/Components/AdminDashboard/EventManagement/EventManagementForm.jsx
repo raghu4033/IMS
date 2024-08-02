@@ -31,7 +31,7 @@ export const EventManagementForm = ({ getEvents, open, onClose }) => {
     }
   };
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       name: "",
       place: "",
@@ -39,12 +39,19 @@ export const EventManagementForm = ({ getEvents, open, onClose }) => {
       user: localStore?._id,
     },
     validationSchema: Yup.object({
-      name: Yup.string().trim().required(),
-      place: Yup.string().trim().required(),
-      date: Yup.date().required(),
+      name: Yup.string()
+        .trim()
+        .required("Event Name is required.")
+        .typeError("Event Name is required."),
+      place: Yup.string()
+        .trim()
+        .required("Event Place is required.")
+        .typeError("Event Place is required."),
+      date: Yup.date()
+        .required("Event Date is required.")
+        .typeError("Event Date is required."),
     }),
     onSubmit: (data) => {
-      console.log("data", data);
       saveEvent(data);
     },
   });
@@ -74,6 +81,11 @@ export const EventManagementForm = ({ getEvents, open, onClose }) => {
             value={values.name}
             onChange={handleChange}
           />
+          {touched?.name && errors?.name ? (
+            <span className="error-text">{errors?.name}</span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="place">Event Place:</label>
@@ -85,6 +97,11 @@ export const EventManagementForm = ({ getEvents, open, onClose }) => {
             value={values.place}
             onChange={handleChange}
           />
+          {touched?.place && errors?.place ? (
+            <span className="error-text">{errors?.place}</span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form-group form-group-column">
           <label htmlFor="date">Event Date:</label>
@@ -93,10 +110,15 @@ export const EventManagementForm = ({ getEvents, open, onClose }) => {
             id="date"
             name="date"
             pattern="[0-9]{10}"
-            placeholder="Mobile Number"
+            placeholder="Event Date"
             value={values.date}
             onChange={handleChange}
           />
+          {touched?.date && errors?.date ? (
+            <span className="error-text">{errors?.date}</span>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </Drawer>

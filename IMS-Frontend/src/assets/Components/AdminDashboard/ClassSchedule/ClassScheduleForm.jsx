@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import { Drawer } from "../../Common/Drawer";
-import ApiService from "../../../../Utils/ApiService";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import ApiService from "../../../../Utils/ApiService";
+import { Drawer } from "../../Common/Drawer";
 
 export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
   const [courses, setCourses] = useState([]);
   const [faculties, setFacaulties] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const getCourses = async () => {
     try {
@@ -58,12 +59,15 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
       }
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      setErrorMessage(
+        err?.response?.data?.error ||
+          "Something went wrong. please try again later."
+      );
       setLoading(false);
     }
   };
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       course: "",
       faculty: "",
@@ -73,15 +77,32 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
       subject: "",
     },
     validationSchema: Yup.object({
-      course: Yup.string().trim().length(24).required(),
-      faculty: Yup.string().trim().length(24).required(),
-      fromDate: Yup.date().required(),
-      toDate: Yup.date().required(),
-      classType: Yup.string().trim().required(),
-      subject: Yup.string().trim().required(),
+      course: Yup.string()
+        .trim()
+        .length(24)
+        .required("Please select Course.")
+        .typeError("Please select Course."),
+      faculty: Yup.string()
+        .trim()
+        .length(24)
+        .required("Please select Faculty.")
+        .typeError("Please select Faculty."),
+      fromDate: Yup.date()
+        .required("From Date is required.")
+        .typeError("From Date is required."),
+      toDate: Yup.date()
+        .required("To Date is required.")
+        .typeError("To Date is required."),
+      classType: Yup.string()
+        .trim()
+        .required("Please select Class Type.")
+        .typeError("Please select Class Type."),
+      subject: Yup.string()
+        .trim()
+        .required("Subject is required.")
+        .typeError("Subject is required."),
     }),
     onSubmit: (data) => {
-      console.log("data", data);
       saveClassSchedules(data);
     },
   });
@@ -103,6 +124,11 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
       }
     >
       <div className="form-container">
+        {errorMessage ? (
+          <span className="error-text">{errorMessage}</span>
+        ) : (
+          <></>
+        )}
         <div className="card-body">
           <div className="form-group">
             <label htmlFor="course">Course Name:</label>
@@ -123,6 +149,11 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
                 );
               })}
             </select>
+            {touched?.course && errors?.course ? (
+              <span className="error-text">{errors?.course}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="form-group">
             <div className="multi-column">
@@ -131,9 +162,15 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
                 type="datetime-local"
                 id="fromDate"
                 name="fromDate"
+                placeholder="From Date"
                 value={values.fromDate}
                 onChange={handleChange}
               />
+              {touched?.fromDate && errors?.fromDate ? (
+                <span className="error-text">{errors?.fromDate}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="multi-column">
               <label htmlFor="toDate">To Date:</label>
@@ -141,9 +178,15 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
                 type="datetime-local"
                 id="toDate"
                 name="toDate"
+                placeholder="To Date"
                 value={values.toDate}
                 onChange={handleChange}
               />
+              {touched?.toDate && errors?.toDate ? (
+                <span className="error-text">{errors?.toDate}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           <div className="form-group">
@@ -152,9 +195,15 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
               type="text"
               id="subject"
               name="subject"
+              placeholder="Subject"
               value={values.subject}
               onChange={handleChange}
             />
+            {touched?.subject && errors?.subject ? (
+              <span className="error-text">{errors?.subject}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="classType">Class Type:</label>
@@ -171,6 +220,11 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
               <option value="theory">Theory</option>
               <option value="lab">Lab</option>
             </select>
+            {touched?.classType && errors?.classType ? (
+              <span className="error-text">{errors?.classType}</span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="faculty">Faculty:</label>
@@ -193,6 +247,11 @@ export const ClassScheduleForm = ({ open, onClose, getClassSchedules }) => {
                 );
               })}
             </select>
+            {touched?.faculty && errors?.faculty ? (
+              <span className="error-text">{errors?.faculty}</span>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

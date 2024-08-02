@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Drawer } from "../../Common/Drawer";
-import ApiService from "../../../../Utils/ApiService";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
+import ApiService from "../../../../Utils/ApiService";
+import { Drawer } from "../../Common/Drawer";
 
 export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
   const [students, setStudents] = useState([]);
@@ -47,7 +47,7 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
     }
   };
 
-  const { values, handleChange, handleSubmit, errors, setFieldValue } =
+  const { values, handleChange, handleSubmit, errors, setFieldValue, touched } =
     useFormik({
       initialValues: {
         student: "",
@@ -58,10 +58,15 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
         paymentType: "",
       },
       validationSchema: Yup.object({
-        student: Yup.string().trim().length(24).required(),
+        student: Yup.string()
+          .trim()
+          .length(24)
+          .required("Please select Student.")
+          .typeError("Please select Student."),
         feesAmount: Yup.number()
           .min(1)
-          .required()
+          .required("Fees amount is required.")
+          .typeError("Fees amount is required.")
           .test(
             "remainingAmount",
             "Fees amount should be less than or equals to remaining fees.",
@@ -73,13 +78,23 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
               );
             }
           ),
-        remainingFees: Yup.number().min(1).required(),
-        paymentDate: Yup.date().required(),
-        installmentNumber: Yup.string().trim().required(),
-        paymentType: Yup.string().trim().required(),
+        remainingFees: Yup.number()
+          .min(1)
+          .required("Remaining Fees is required.")
+          .typeError("Remaining Fees is required."),
+        paymentDate: Yup.date()
+          .required("Payment Date is required.")
+          .typeError("Payment Date is required."),
+        installmentNumber: Yup.string()
+          .trim()
+          .required("Installment Number is requirement.")
+          .typeError("Installment Number is requirement."),
+        paymentType: Yup.string()
+          .trim()
+          .required("Please select Payment Type.")
+          .typeError("Please select Payment Type."),
       }),
       onSubmit: (data) => {
-        console.log("data", data);
         saveStudentFees(data);
       },
     });
@@ -137,6 +152,11 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                     );
                   })}
                 </select>
+                {touched?.student && errors?.student ? (
+                  <span className="error-text">{errors?.student}</span>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
             <div className="form-group form-group-column">
@@ -150,6 +170,11 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                 value={values.paymentDate}
                 max={new Date().toISOString().split("T")[0]}
               />
+              {touched?.paymentDate && errors?.paymentDate ? (
+                <span className="error-text">{errors?.paymentDate}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="remainingFees">Amount:</label>
@@ -157,9 +182,15 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                 type="number"
                 id="remainingFees"
                 name="remainingFees"
+                placeholder="Remaining Fees"
                 disabled={true}
                 value={values.remainingFees}
               />
+              {touched?.remainingFees && errors?.remainingFees ? (
+                <span className="error-text">{errors?.remainingFees}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="feesAmount">Amount:</label>
@@ -167,10 +198,16 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                 type="number"
                 id="feesAmount"
                 name="feesAmount"
+                placeholder="Fees Amount"
                 disabled={!values.student}
                 onChange={handleChange}
                 value={values.feesAmount}
               />
+              {touched?.feesAmount && errors?.feesAmount ? (
+                <span className="error-text">{errors?.feesAmount}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="installmentNumber">Installment Number:</label>
@@ -178,10 +215,16 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                 type="number"
                 id="installmentNumber"
                 name="installmentNumber"
+                placeholder="Installment Number"
                 disabled={!values.student}
                 onChange={handleChange}
                 value={values.installmentNumber}
               />
+              {touched?.installmentNumber && errors?.installmentNumber ? (
+                <span className="error-text">{errors?.installmentNumber}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="paymentType">Payment Type:</label>
@@ -199,6 +242,11 @@ export const FeesManagementForm = ({ open, onClose, getStudentFees }) => {
                 <option value="card">Card</option>
                 <option value="cheque">Cheque</option>
               </select>
+              {touched?.paymentType && errors?.paymentType ? (
+                <span className="error-text">{errors?.paymentType}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </form>
