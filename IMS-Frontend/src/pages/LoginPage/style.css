@@ -60,10 +60,27 @@
   transition: background-color 0.3s ease;
 }
 
+.form-box {
+  width: 100%;
+}
+
 .ims-login-box .ims-buttons button:last-child {
   margin-right: 0;
 }
 
 .ims-login-box .ims-buttons button:hover {
   background-color: #5d52cf;
+}
+
+.input-box {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  width: calc(400px - 80px);
+  margin-bottom: 16px;
+}
+
+.error-text {
+  width: 100%;
+  text-align: left;
 }
