@@ -34,7 +34,7 @@ export const FacultyProfile = () => {
       <div className="container">
         <div className="student-profile-displau-column column-three">
           <div className="box student-profile-img">
-            <img src={userLogo} alt="User Image" />
+            <img src={userProfile?.profileImage || userLogo} alt="User Image" className="user-profile" />
             <h2>{[userProfile?.firstName, userProfile?.lastName].filter(Boolean).join(" ")}</h2>
             <hr />
             <div className="student-info"><strong>Email:</strong> {userProfile?.email || "N/A"}</div>
