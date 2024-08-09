@@ -1,6 +1,7 @@
 import moment from "moment";
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ApiService from "../../../../Utils/ApiService";
+import Loader from "../../Common/Loader";
 import './style.css';
 
 export const Dashboard = () => {
@@ -18,7 +19,7 @@ export const Dashboard = () => {
   }, []);
 
   const [dashboardSummary, setDashboardSummary] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getDashboardSummary = async () => {
     try {
@@ -38,6 +39,10 @@ export const Dashboard = () => {
   useEffect(() => {
     getDashboardSummary();
   }, []);
+
+  if(loading) {
+    return <Loader />
+  }
 
   return (
     <div className="admin-dashboard">
