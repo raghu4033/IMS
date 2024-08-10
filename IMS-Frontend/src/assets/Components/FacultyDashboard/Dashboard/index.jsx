@@ -1,8 +1,9 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ApiService from "../../../../Utils/ApiService";
 import UserImg from "../../../Images/user.png";
 import "./style.css";
+import Loader from "../../Common/Loader";
 
 export const Dashboard = () => {
   const [time, setTime] = useState(new Date());
@@ -37,6 +38,11 @@ export const Dashboard = () => {
   useEffect(() => {
     getDashboardSummary();
   }, []);
+  4;
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="faculty-dashboard">
@@ -49,9 +55,9 @@ export const Dashboard = () => {
             dashboardSummary.latest5Students.map((student) => (
               <div key={student._id} className="stats-box stats-student">
                 <img
-                  src={UserImg}
-                  alt={student.name}
-                  className="student-photo"
+                  src={student?.profileImage || UserImg}
+                  alt="User Image"
+                  className="user-profile"
                 />
                 <h3 className="stats-title">
                   {[student?.firstName, student?.lastName]

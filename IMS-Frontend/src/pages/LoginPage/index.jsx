@@ -49,9 +49,9 @@ export default function LoginPage() {
         if (role === 'ADMIN') {
           navigate('/');
         } else if (role === 'FACULTY') {
-          navigate('/view-profile');
+          navigate('/dashboard');
         } else if (role === 'STUDENT') {
-          navigate('/student-profile');
+          navigate('/dashboard');
         }
       }
       setLoading(false);
