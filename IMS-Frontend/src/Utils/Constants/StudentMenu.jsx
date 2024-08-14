@@ -31,4 +31,8 @@ export const StudentMenu = [
     key: "/student-generate-certificate",
     label: "Generate Certificate",
   },
+  {
+    key: "/capstone-submission",
+    label: "Capstone Submission",
+  },
 ];

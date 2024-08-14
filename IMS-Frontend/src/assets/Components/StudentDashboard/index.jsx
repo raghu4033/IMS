@@ -1,14 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import { StudentMenu } from "../../../Utils/Constants/StudentMenu";
 import { Layout } from "../Common/Layout";
+import { CapstoneSubmissions } from "./CaptoneSubmission";
 import { Dashboard } from "./Dashboard";
-import { StudentFees } from "./StudentFees";
-import { StudentProfile } from "./StudentProfile";
 import { StudentAattandance } from "./StudentAattandance";
-import { StudentEvents } from "./StudentEvents";
-import { StudentNotice } from "./StudentNotice";
 import { StudentClasses } from "./StudentClasses";
+import { StudentEvents } from "./StudentEvents";
+import { StudentFees } from "./StudentFees";
 import { StudentGenerateCertificate } from "./StudentGenerateCertificate";
+import { StudentNotice } from "./StudentNotice";
+import { StudentProfile } from "./StudentProfile";
 
 export const StudentDashboard = () => {
   return (
@@ -22,6 +23,7 @@ export const StudentDashboard = () => {
         <Route path="student-announcements/" element={<StudentNotice />} />
         <Route path="student-class-schedule/" element={<StudentClasses />} />
         <Route path="student-generate-certificate/" element={<StudentGenerateCertificate />} />
+        <Route path="capstone-submission/" element={<CapstoneSubmissions />} />
       </Routes>
     </Layout>
   );
