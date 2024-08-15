@@ -1,17 +1,15 @@
 const { validateBody } = require("../middlewares/validator");
-const {
-  createStudentSubmissionSchema,
-} = require("../schema/student-submission.schema");
+const { createSubmissionSchema } = require("../schema/submission.schema");
 const {
   createSubmission,
   getSubmissions,
-} = require("../services/student-submission.service");
+} = require("../services/submission.service");
 const jwtAuthenticator = require("../middlewares/jwtAuthenticator");
 
 const ApiService = {
   getSubmissions: async (req, res, next) => {
     try {
-      const users = await getSubmissions(req.user, req.query);
+      const users = await getSubmissions(req.user);
       res.formattedResponse(200, "Submissions fetch successfully", users);
     } catch (err) {
       next(err);
@@ -30,10 +28,10 @@ const ApiService = {
 module.exports = (server) => {
   server
     .post(
-      "/student-submission",
-      validateBody(createStudentSubmissionSchema),
+      "/submission",
+      validateBody(createSubmissionSchema),
       jwtAuthenticator,
       ApiService.createSubmission
     )
-    .get("/student-submissions", jwtAuthenticator, ApiService.getSubmissions);
+    .get("/submissions", jwtAuthenticator, ApiService.getSubmissions);
 };
