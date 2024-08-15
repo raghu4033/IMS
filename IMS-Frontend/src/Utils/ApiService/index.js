@@ -49,6 +49,10 @@ const ApiURLs = {
   forgotPasswordVerifyOTP: "forgot-password-verify-otp",
   resetPassword: "reset-password",
   dashboardSummary: "dashboard-summary",
+  getSubmissions: "submissions",
+  saveCapstoneSubmissions: "submission",
+  getStudentSubmissions: "student-submissions",
+  saveStudentSubmission: "student-submission",
 };
 
 export default {
