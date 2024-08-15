@@ -9,8 +9,6 @@ import { Table } from "../../Common/Table";
 import "../styles.css";
 import Loader from "../../Common/Loader";
 
-
-
 export const StudentGenerateCertificate = () => {
   const [drawer, setDrawer] = useState({ open: false, cert: null });
   const [certificates, setCertificates] = useState([]);
@@ -59,7 +57,9 @@ export const StudentGenerateCertificate = () => {
   const getCertificates = async () => {
     try {
       setLoading(true);
-      const resp = await ApiService.get(`${ApiService.ApiURLs.getCertificates}`);
+      const resp = await ApiService.get(
+        `${ApiService.ApiURLs.getCertificates}`
+      );
       if (resp.status === 200 && resp.data?.data) {
         console.log(resp.data.data);
         setCertificates(resp.data.data);
@@ -76,54 +76,86 @@ export const StudentGenerateCertificate = () => {
   }, []);
 
   const handleViewCertificate = (certificate) => {
-    setDrawer({ cert: certificate, open: true })
-  }
+    setDrawer({ cert: certificate, open: true });
+  };
 
   function printDocument() {
-    const input = document.getElementById('divToPrint');
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 0, 0);
-        // pdf.output('dataurlnewwindow');
-        pdf.save(`${drawer.cert?._id || "certificate"}.pdf`);
-      })
-      ;
+    const input = document.getElementById("divToPrint");
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("l", "px", "a4");
+
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, "JPEG", 15, 15, width - 30, height - 30);
+      // pdf.output('dataurlnewwindow');
+      pdf.save(`${drawer.cert?._id || "certificate"}.pdf`);
+    });
   }
 
   if (loading) {
-    return <>
-      <Loader />
-    </>
+    return (
+      <>
+        <Loader />
+      </>
+    );
   }
-
 
   return (
     <>
-      <Table rows={certificates} columns={columns({ handleViewCertificate })} title={"Certificates"} />
-      {drawer.open && drawer.cert ?
-        <Drawer
-          title={"Certificate"}
-          isOpen={drawer.open}
-          onClose={() => setDrawer({ cert: null, open: false })}
-          footer={<>
-            <button onClick={printDocument}>Download</button>
-          </>}
-        >
-          <div className="card-table-container">
+      <Table
+        rows={certificates}
+        columns={columns({ handleViewCertificate })}
+        title={"Certificates"}
+      />
+      {drawer.open && drawer.cert ? (
+        <div className="student-certificate-drawer">
+          <Drawer
+            title={"Certificate"}
+            isOpen={drawer.open}
+            onClose={() => setDrawer({ cert: null, open: false })}
+            footer={
+              <>
+                <button onClick={printDocument}>Download</button>
+              </>
+            }
+          >
             <div className="student-certificate" id="divToPrint">
               <div className="certificate-container">
-                <img src={userLogo} alt="Institute Logo" className="certificate-logo" />
-                <h1 className="certificate-title">Certificate of Achievement</h1>
+                <img
+                  src={userLogo}
+                  alt="Institute Logo"
+                  className="certificate-logo"
+                />
+                <h1 className="certificate-title">
+                  Certificate of Achievement
+                </h1>
                 <p className="certificate-text">This is to certify that</p>
-                <h2 className="student-name">{[drawer?.cert?.student?.firstName, drawer?.cert?.student?.lastName].filter(Boolean).join(" ")}</h2>
-                <p className="certificate-text">has successfully completed the</p>
-                <h3 className="course-name">{drawer?.cert?.course?.name || "N/A"}</h3>
+                <h2 className="student-name">
+                  {[
+                    drawer?.cert?.student?.firstName,
+                    drawer?.cert?.student?.lastName,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                </h2>
+                <p className="certificate-text">
+                  has successfully completed the
+                </p>
+                <h3 className="course-name">
+                  {drawer?.cert?.course?.name || "N/A"}
+                </h3>
                 <p className="certificate-text">with excellent grades.</p>
-                <p className="certificate-date">Date: {drawer?.cert?.date && moment(drawer?.cert?.date).isValid()
-                  ? moment(drawer?.cert?.date).format("DD MMMM YYYY")
-                  : "N/A"}</p>
+                <p className="certificate-text">
+                  Grade: <b>{drawer?.cert?.certificateGrade || "N/A"}</b>
+                </p>
+                <p className="certificate-date">
+                  Date:{" "}
+                  {drawer?.cert?.date && moment(drawer?.cert?.date).isValid()
+                    ? moment(drawer?.cert?.date).format("DD MMMM YYYY")
+                    : "N/A"}
+                </p>
                 <div className="signature-section">
                   <div className="signature">
                     <p>_______________________</p>
@@ -138,8 +170,11 @@ export const StudentGenerateCertificate = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </Drawer> : <></>}
+          </Drawer>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

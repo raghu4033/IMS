@@ -34,6 +34,7 @@ const createFacultySchema = Joi.object({
   accountName: Joi.string().trim().required(),
   ifscCode: Joi.string().trim().required(),
   accountNumber: Joi.string().trim().required(),
+  profileImage: Joi.string().trim().required(),
 });
 
 const createStudentSchema = Joi.object({
@@ -59,6 +60,7 @@ const createStudentSchema = Joi.object({
   totalFees: Joi.number().min(1).required(),
   batchName: Joi.string().trim().optional(),
   course: Joi.string().trim().hex().length(24).required(),
+  profileImage: Joi.string().trim().required(),
 });
 
 module.exports = {

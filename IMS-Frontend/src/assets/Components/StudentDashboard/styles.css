@@ -1,180 +1,182 @@
-.dashboard-content{
+.dashboard-content {
   overflow-y: scroll !important;
 }
 /* attandence */
 .attandence-card {
-    flex: 1;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 0.6em; 
+  flex: 1;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.6em;
 }
 .total-sessions {
-    background-color: #007bff;
+  background-color: #007bff;
 }
 
 .present {
-    background-color: #28a745;
+  background-color: #28a745;
 }
 
 .absent {
-    background-color: #dc3545;
+  background-color: #dc3545;
 }
 
 .percentage {
-    background-color: #ffc107;
+  background-color: #ffc107;
 }
 
 .count {
-    font-size: 2em;
-    margin-top: 10px;
+  font-size: 2em;
+  margin-top: 10px;
 }
 
 .card-table th {
-    background-color: #4e73df;
-    color: #fff;
-    text-align: left;
+  background-color: #4e73df;
+  color: #fff;
+  text-align: left;
 }
 
 /* attandence */
 
 /* fees */
 .download-btn {
-    background-color: #0056b3;
-    padding: 10px;
-    color: white;
-    border: 0;
-    border-radius: 5px;
+  background-color: #0056b3;
+  padding: 10px;
+  color: white;
+  border: 0;
+  border-radius: 5px;
 }
 
 .download-btn:hover {
-    background-color: #0056b3;
-    padding: 10px;
-    color: white;
-    border: 0;
+  background-color: #0056b3;
+  padding: 10px;
+  color: white;
+  border: 0;
 }
 
 .fees-summary-card {
-    flex: 1;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: #fff;
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #fff;
 }
 
 .fees-summary-total {
-    background-color: #293240;
+  background-color: #293240;
 }
 
 .fees-summary-paid {
-    background-color: #17a2b8;
+  background-color: #17a2b8;
 }
 
 .fees-summary-remaining {
-    background-color: #ffc107;
+  background-color: #ffc107;
 }
 
 .summary-content {
-    padding: 20px;
-    font-size: 1.2em;
+  padding: 20px;
+  font-size: 1.2em;
 }
 
 .summary-content p {
-    margin: 10px 0;
-    color: #fff;
+  margin: 10px 0;
+  color: #fff;
 }
 
-@media only screen and (max-width: 768px) {
-    .card-container {
-        flex-direction: column;
-    }
+@media only screen and (max-width: 767px) {
+  .card-container {
+    flex-direction: column;
+  }
 }
 
 /* fees */
 
 /* fees invoice */
 .fees-invoice {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 800px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .invoice-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .invoice-logo {
-    width: 120px; /* Adjust size as needed */
-    height: auto;
-  }
-  
-  .invoice-header-details {
-    text-align: right;
-  }
-  
-  .institute-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .invoice-date {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .invoice-body {
-    font-size: 16px;
-  }
-  
-  .invoice-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .invoice-details {
-    margin-top: 20px;
-  }
-  
-  .invoice-details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .invoice-details-table th, .invoice-details-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .invoice-details-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .invoice-footer {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .footer-text {
-    font-size: 14px;
-    color: #777;
-  }
-  /* fees invoice */
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 800px;
+  background-color: #fff;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.invoice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.invoice-logo {
+  width: 120px; /* Adjust size as needed */
+  height: auto;
+}
+
+.invoice-header-details {
+  text-align: right;
+}
+
+.institute-name {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.invoice-date {
+  font-size: 14px;
+  color: #555;
+}
+
+.invoice-body {
+  font-size: 16px;
+  min-height: 500px;
+}
+
+.invoice-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.invoice-details {
+  margin-top: 20px;
+}
+
+.invoice-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.invoice-details-table th,
+.invoice-details-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.invoice-details-table th {
+  background-color: #f4f4f4;
+}
+
+.invoice-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #777;
+}
+/* fees invoice */
 
 /* class-shedule */
 .class-schedule-container {
@@ -195,7 +197,7 @@
 
 .schedule-card {
   padding: 20px;
-  background-color: #59A9FF;
+  background-color: #59a9ff;
   border-radius: 10px;
 }
 
@@ -302,13 +304,12 @@
 
 @media only screen and (max-width: 600px) {
   .event-header {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 /* events */
-
 
 /* announcements */
 
@@ -375,8 +376,8 @@
 
 @media only screen and (max-width: 600px) {
   .announcement-header {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -390,7 +391,7 @@ body {
   overflow-y: scroll;
 }
 
-.form-heading{
+.form-heading {
   background-color: #4e73df;
 }
 .container {
@@ -408,7 +409,8 @@ body {
   padding: 20px;
 }
 
-.column-three, .column-seven {
+.column-three,
+.column-seven {
   box-sizing: border-box;
 }
 
@@ -421,8 +423,8 @@ body {
   flex: 0 0 70%;
   max-width: 70%;
 }
-.student-profile-img img{
-width: 100px;
+.student-profile-img img {
+  width: 100px;
 }
 
 .box {
@@ -463,14 +465,12 @@ hr {
 .student-info strong {
   color: #000;
 }
-.student-profile-img img{
-  height: 60%;
-}
 
-@media (max-width: 768px) {
-  .column-three, .column-seven {
-      flex: 0 0 100%;
-      max-width: 100%;
+@media (max-width: 767px) {
+  .column-three,
+  .column-seven {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 
@@ -487,7 +487,7 @@ hr {
   padding: 40px;
   margin-bottom: 20px;
 }
-.dashboard-custome{
+.dashboard-custome {
   width: 100% !important;
 }
 
@@ -553,7 +553,7 @@ hr {
   background-color: #dc3545; /* Red */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .widget-container {
     flex-direction: column;
   }
@@ -564,7 +564,8 @@ hr {
   border-collapse: collapse;
 }
 
-#certificate-table th, #certificate-table td {
+#certificate-table th,
+#certificate-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
@@ -594,15 +595,17 @@ hr {
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+  width: 100%;
+  max-width: 800px;
 }
 
 .certificate-container {
-  width: 80%;
+  width: 100%;
   padding: 20px;
   border: 2px solid #000;
   border-radius: 10px;
   text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .certificate-logo {
@@ -660,3 +663,20 @@ hr {
   font-style: italic;
 }
 /* Student certificate */
+
+.user-profile {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 767px) {
+  .signature-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 30px;
+  }
+}

@@ -7,6 +7,7 @@ import { Drawer } from "../../Common/Drawer";
 export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const localStore = JSON.parse(
     localStorage.getItem("ims:auth:profile") || "{}"
@@ -34,12 +35,9 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
   const saveAnnoucements = async (data) => {
     try {
       setLoading(true);
-      const resp = await ApiService.post(
-        ApiService.ApiURLs.saveAnnouncement,
-        {
-          ...data,
-        }
-      );
+      const resp = await ApiService.post(ApiService.ApiURLs.saveAnnouncement, {
+        ...data,
+      });
       if (resp.status === 200 && resp.data?.data) {
         console.log("Student Inquiry saved successfully.");
         onClose();
@@ -47,12 +45,15 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
       }
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      setErrorMessage(
+        err?.response?.data?.error ||
+          "Something went wrong. please try again later."
+      );
       setLoading(false);
     }
   };
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleChange, handleSubmit, errors, touched } = useFormik({
     initialValues: {
       subject: "",
       description: "",
@@ -61,11 +62,24 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
       course: "",
     },
     validationSchema: Yup.object({
-      subject: Yup.string().trim().required(),
-      description: Yup.string().trim().required(),
-      date: Yup.date().required(),
+      subject: Yup.string()
+        .trim()
+        .required("Subject is required.")
+        .typeError("Subject is required."),
+      description: Yup.string()
+        .trim()
+        .required("Description is required.")
+        .typeError("Description is required."),
+      date: Yup.date()
+        .required("Date is required.")
+        .typeError("Date is required."),
       user: Yup.string().trim().length(24).required(),
-      course: Yup.string().trim().length(24).required(),
+      course: Yup.string()
+        .trim()
+        .length(24)
+        .required()
+        .required("Please select course.")
+        .typeError("Please select course."),
     }),
     onSubmit: (data) => {
       console.log("data", data);
@@ -73,13 +87,13 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
     },
   });
 
-  console.log("errors", errors)
+  console.log("errors", errors);
 
   return (
     <Drawer
       isOpen={open}
       onClose={onClose}
-      title={"Student Inquiry"}
+      title={"Announcement"}
       footer={
         <>
           <button>Cancel</button>
@@ -90,6 +104,11 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
       }
     >
       <div>
+        {errorMessage ? (
+          <span className="error-text">{errorMessage}</span>
+        ) : (
+          <></>
+        )}
         <div className="form-group">
           <label htmlFor="subject">Subject:</label>
           <input
@@ -100,6 +119,11 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
             value={values.subject}
             onChange={handleChange}
           />
+          {touched?.subject && errors?.subject ? (
+            <span className="error-text">{errors?.subject}</span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="description">Description:</label>
@@ -111,6 +135,11 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
             value={values.description}
             onChange={handleChange}
           />
+          {touched?.description && errors?.description ? (
+            <span className="error-text">{errors?.description}</span>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="form-group">
           <label htmlFor="date">Date:</label>
@@ -118,10 +147,16 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
             type="date"
             id="date"
             name="date"
+            placeholder="Date"
             value={values.date}
             onChange={handleChange}
           />
         </div>
+        {touched?.date && errors?.date ? (
+          <span className="error-text">{errors?.date}</span>
+        ) : (
+          <></>
+        )}
         <div className="form-group form-group-column">
           <label htmlFor="course">Course Name:</label>
           <select
@@ -141,6 +176,11 @@ export const AnnouncementForm = ({ getAnnouncements, open, onClose }) => {
               );
             })}
           </select>
+          {touched?.course && errors?.course ? (
+            <span className="error-text">{errors?.course}</span>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </Drawer>

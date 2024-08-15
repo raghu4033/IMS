@@ -1,8 +1,9 @@
-import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
-import * as Yup from 'yup';
-import ApiService from '../../../../Utils/ApiService';
-import { Drawer } from '../../Common/Drawer';
+import { useFormik } from "formik";
+import { useEffect, useState } from "react";
+import * as Yup from "yup";
+import ApiService from "../../../../Utils/ApiService";
+import { Drawer } from "../../Common/Drawer";
+import { ImageUpload } from "../../Common/ImageUpload";
 
 export const StudentAdmissionForm = ({
   getStudentAdmissions,
@@ -11,6 +12,7 @@ export const StudentAdmissionForm = ({
 }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     getCourses();
@@ -33,6 +35,7 @@ export const StudentAdmissionForm = ({
 
   const saveStudentAdmission = async (data) => {
     try {
+      setErrorMessage(null);
       setLoading(true);
       const resp = await ApiService.post(
         ApiService.ApiURLs.saveStudentAdmission,
@@ -41,77 +44,146 @@ export const StudentAdmissionForm = ({
         }
       );
       if (resp.status === 200 && resp.data?.data) {
-        console.log('Student Admission saved successfully.');
+        console.log("Student Admission saved successfully.");
         onClose();
         getStudentAdmissions();
       }
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      setErrorMessage(
+        err?.response?.data?.error ||
+          "Something went wrong. please try again later."
+      );
       setLoading(false);
     }
   };
 
-  const { values, handleChange, handleSubmit, errors } = useFormik({
-    initialValues: {
-      academicYear: '',
-      joiningDate: '',
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      gender: '',
-      dob: '',
-      nationality: '',
-      bloodGroup: '',
-      cast: '',
-      permanentAddress: '',
-      presentAddress: '',
-      pin: '',
-      city: '',
-      email: '',
-      mobile: '',
-      parentsName: '',
-      parentsMobile: '',
-      totalFees: '',
-      batchName: '',
-      course: '',
-    },
-    validationSchema: Yup.object({
-      academicYear: Yup.string().trim().required(),
-      joiningDate: Yup.date().required(),
-      firstName: Yup.string().trim().required(),
-      middleName: Yup.string().trim().required(),
-      lastName: Yup.string().trim().required(),
-      gender: Yup.string().trim().required(),
-      dob: Yup.date().required(),
-      nationality: Yup.string().trim().required(),
-      bloodGroup: Yup.string().trim().required(),
-      cast: Yup.string().trim().required(),
-      permanentAddress: Yup.string().trim().required(),
-      presentAddress: Yup.string().trim().required(),
-      pin: Yup.string().trim().required(),
-      city: Yup.string().trim().required(),
-      email: Yup.string().trim().required(),
-      mobile: Yup.string().trim().length(10).required(),
-      parentsName: Yup.string().trim().required(),
-      parentsMobile: Yup.string().trim().required(),
-      totalFees: Yup.number().min(1).required(),
-      batchName: Yup.string().trim().required(),
-      course: Yup.string().trim().length(24).required(),
-    }),
-    onSubmit: (data) => {
-      console.log('data', data);
-      saveStudentAdmission(data);
-    },
-  });
+  const { values, handleChange, handleSubmit, errors, touched, setFieldValue } =
+    useFormik({
+      initialValues: {
+        academicYear: "",
+        joiningDate: "",
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        gender: "",
+        dob: "",
+        nationality: "",
+        bloodGroup: "",
+        cast: "",
+        permanentAddress: "",
+        presentAddress: "",
+        pin: "",
+        city: "",
+        email: "",
+        mobile: "",
+        parentsName: "",
+        parentsMobile: "",
+        totalFees: "",
+        batchName: "",
+        course: "",
+        profileImage: "",
+      },
+      validationSchema: Yup.object({
+        academicYear: Yup.string()
+          .trim()
+          .required("Academic Year is required.")
+          .typeError("Academic Year is required."),
+        joiningDate: Yup.date()
+          .required("Joining Date is required.")
+          .typeError("Joining Date is required."),
+        firstName: Yup.string()
+          .trim()
+          .required("First Name is required.")
+          .typeError("First Name is required."),
+        middleName: Yup.string()
+          .trim()
+          .required("Middle Name is required.")
+          .typeError("Middle Name is required."),
+        lastName: Yup.string()
+          .trim()
+          .required("Last Name is required.")
+          .typeError("Last Name is required."),
+        gender: Yup.string()
+          .trim()
+          .required("Please select Gender.")
+          .typeError("Please select Gender."),
+        dob: Yup.date()
+          .required("Date of Birth is required.")
+          .typeError("Date of Birth is required."),
+        nationality: Yup.string()
+          .trim()
+          .required("Nationality is required.")
+          .typeError("Nationality is required."),
+        bloodGroup: Yup.string()
+          .trim()
+          .required("Please select Blood Group.")
+          .typeError("Please select Blood Group."),
+        cast: Yup.string()
+          .trim()
+          .required("Cast is required.")
+          .typeError("Cast is required."),
+        permanentAddress: Yup.string()
+          .trim()
+          .required("Permanent Address is required.")
+          .typeError("Permanent Address is required."),
+        presentAddress: Yup.string()
+          .trim()
+          .required("Present Address is required.")
+          .typeError("Present Address is required."),
+        pin: Yup.string()
+          .trim()
+          .required("Pin is required.")
+          .typeError("Pin is required."),
+        city: Yup.string()
+          .trim()
+          .required("City is required.")
+          .typeError("City is required."),
+        email: Yup.string()
+          .trim()
+          .required("Email is required.")
+          .typeError("Email is required."),
+        mobile: Yup.string()
+          .trim()
+          .length(10)
+          .required("Mobilr Number is required.")
+          .typeError("Mobilr Number is required."),
+        parentsName: Yup.string()
+          .trim()
+          .required("Parent's Name is required.")
+          .typeError("Parent's Name is required."),
+        parentsMobile: Yup.string()
+          .trim()
+          .required("Parent's Mobile is required.")
+          .typeError("Parent's Mobile is required."),
+        totalFees: Yup.number()
+          .min(1)
+          .required("Total Fees is required.")
+          .typeError("Total Fees is required."),
+        batchName: Yup.string()
+          .trim()
+          .required("Batch Name is required.")
+          .typeError("Batch Name is required."),
+        course: Yup.string()
+          .trim()
+          .length(24)
+          .required("Please select Course.")
+          .typeError("Please select Course."),
+        profileImage: Yup.string()
+          .trim()
+          .required("Profile image is required.")
+          .typeError("Profile image is required."),
+      }),
+      onSubmit: (data) => {
+        saveStudentAdmission(data);
+      },
+    });
 
-  console.log("errors", errors)
-  
   return (
     <Drawer
       isOpen={open}
       onClose={onClose}
-      title={'Student Admission'}
+      title={"Student Admission"}
       footer={
         <>
           <button>Cancel</button>
@@ -123,6 +195,11 @@ export const StudentAdmissionForm = ({
     >
       <div className="form-container">
         <form>
+          {errorMessage ? (
+            <span className="error-text">{errorMessage}</span>
+          ) : (
+            <></>
+          )}
           <div className="form-section">
             <div className="section-heading">Official Details</div>
             <div className="form-group form-group-column">
@@ -141,6 +218,11 @@ export const StudentAdmissionForm = ({
                 <option value="2021-22">2021-22</option>
                 <option value="2020-21">2020-21</option>
               </select>
+              {touched?.academicYear && errors?.academicYear ? (
+                <span className="error-text">{errors?.academicYear}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="joiningDate">Joining Date:</label>
@@ -151,6 +233,11 @@ export const StudentAdmissionForm = ({
                 value={values.joiningDate}
                 onChange={handleChange}
               />
+              {touched?.joiningDate && errors?.joiningDate ? (
+                <span className="error-text">{errors?.joiningDate}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
@@ -166,6 +253,11 @@ export const StudentAdmissionForm = ({
                 value={values.firstName}
                 onChange={handleChange}
               />
+              {touched?.firstName && errors?.firstName ? (
+                <span className="error-text">{errors?.firstName}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="middleName">Middle Name:</label>
@@ -177,6 +269,11 @@ export const StudentAdmissionForm = ({
                 value={values.middleName}
                 onChange={handleChange}
               />
+              {touched?.middleName && errors?.middleName ? (
+                <span className="error-text">{errors?.middleName}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="lastName">Last Name:</label>
@@ -188,6 +285,11 @@ export const StudentAdmissionForm = ({
                 value={values.lastName}
                 onChange={handleChange}
               />
+              {touched?.lastName && errors?.lastName ? (
+                <span className="error-text">{errors?.lastName}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="dob">Date of Birth:</label>
@@ -198,6 +300,11 @@ export const StudentAdmissionForm = ({
                 value={values.dob}
                 onChange={handleChange}
               />
+              {touched?.dob && errors?.dob ? (
+                <span className="error-text">{errors?.dob}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="gender">Gender:</label>
@@ -214,6 +321,11 @@ export const StudentAdmissionForm = ({
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
+              {touched?.gender && errors?.gender ? (
+                <span className="error-text">{errors?.gender}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="nationality">Nationality:</label>
@@ -225,6 +337,11 @@ export const StudentAdmissionForm = ({
                 value={values.nationality}
                 onChange={handleChange}
               />
+              {touched?.nationality && errors?.nationality ? (
+                <span className="error-text">{errors?.nationality}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="bloodGroup">Blood Group:</label>
@@ -246,6 +363,11 @@ export const StudentAdmissionForm = ({
                 <option value="AB+">AB+</option>
                 <option value="AB-">AB-</option>
               </select>
+              {touched?.bloodGroup && errors?.bloodGroup ? (
+                <span className="error-text">{errors?.bloodGroup}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="cast">Cast:</label>
@@ -257,6 +379,11 @@ export const StudentAdmissionForm = ({
                 value={values.cast}
                 onChange={handleChange}
               />
+              {touched?.cast && errors?.cast ? (
+                <span className="error-text">{errors?.cast}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
@@ -271,6 +398,11 @@ export const StudentAdmissionForm = ({
                 value={values.permanentAddress}
                 onChange={handleChange}
               ></textarea>
+              {touched?.permanentAddress && errors?.permanentAddress ? (
+                <span className="error-text">{errors?.permanentAddress}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="presentAddress">Present Address:</label>
@@ -281,6 +413,11 @@ export const StudentAdmissionForm = ({
                 value={values.presentAddress}
                 onChange={handleChange}
               ></textarea>
+              {touched?.presentAddress && errors?.presentAddress ? (
+                <span className="error-text">{errors?.presentAddress}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="city">City:</label>
@@ -292,6 +429,11 @@ export const StudentAdmissionForm = ({
                 value={values.city}
                 onChange={handleChange}
               />
+              {touched?.city && errors?.city ? (
+                <span className="error-text">{errors?.city}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="pin">Pin:</label>
@@ -303,6 +445,11 @@ export const StudentAdmissionForm = ({
                 value={values.pin}
                 onChange={handleChange}
               />
+              {touched?.pin && errors?.pin ? (
+                <span className="error-text">{errors?.pin}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="mobile">Mobile Number:</label>
@@ -315,6 +462,11 @@ export const StudentAdmissionForm = ({
                 value={values.mobile}
                 onChange={handleChange}
               />
+              {touched?.mobile && errors?.mobile ? (
+                <span className="error-text">{errors?.mobile}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group form-group-column">
               <label htmlFor="email">Email:</label>
@@ -326,14 +478,33 @@ export const StudentAdmissionForm = ({
                 value={values.email}
                 onChange={handleChange}
               />
+              {touched?.email && errors?.email ? (
+                <span className="error-text">{errors?.email}</span>
+              ) : (
+                <></>
+              )}
             </div>
-            {/* <div className="form-section">
+            <div className="form-section">
               <div className="section-heading">Photo</div>
               <div className="form-group">
                 <label htmlFor="photo">Upload Photo:</label>
-                <input type="file" id="photo" name="photo" accept="image/*" />
+                <ImageUpload
+                  error={
+                    touched?.profileImage && errors?.profileImage
+                      ? errors.profileImage
+                      : null
+                  }
+                  onUpload={(url) => {
+                    console.log(url);
+                    setFieldValue("profileImage", url);
+                  }}
+                  onDelete={() => {
+                    setFieldValue("profileImage", "");
+                  }}
+                  onError={() => {}}
+                />
               </div>
-            </div> */}
+            </div>
           </div>
 
           <div className="form-section">
@@ -348,6 +519,11 @@ export const StudentAdmissionForm = ({
                 value={values.parentsName}
                 onChange={handleChange}
               />
+              {touched?.parentsName && errors?.parentsName ? (
+                <span className="error-text">{errors?.parentsName}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="parentsMobile">Parents Mobile:</label>
@@ -360,6 +536,11 @@ export const StudentAdmissionForm = ({
                 value={values.parentsMobile}
                 onChange={handleChange}
               />
+              {touched?.parentsName && errors?.parentsName ? (
+                <span className="error-text">{errors?.parentsName}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
@@ -375,6 +556,11 @@ export const StudentAdmissionForm = ({
                 value={values.totalFees}
                 onChange={handleChange}
               />
+              {touched?.totalFees && errors?.totalFees ? (
+                <span className="error-text">{errors?.totalFees}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
 
@@ -399,6 +585,11 @@ export const StudentAdmissionForm = ({
                   );
                 })}
               </select>
+              {touched?.course && errors?.course ? (
+                <span className="error-text">{errors?.course}</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="batchName">Batch Name:</label>
@@ -410,6 +601,11 @@ export const StudentAdmissionForm = ({
                 value={values.batchName}
                 onChange={handleChange}
               />
+              {touched?.batchName && errors?.batchName ? (
+                <span className="error-text">{errors?.batchName}</span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </form>

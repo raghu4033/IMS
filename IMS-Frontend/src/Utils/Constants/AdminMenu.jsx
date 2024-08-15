@@ -39,4 +39,8 @@ export const AdminMenu = [
     key: "/event-management",
     label: "Event Management",
   },
+  {
+    key: "/submissions",
+    label: "Submissions",
+  },
 ];
