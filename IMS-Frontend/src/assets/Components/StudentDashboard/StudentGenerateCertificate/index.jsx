@@ -110,7 +110,7 @@ export const StudentGenerateCertificate = () => {
         title={"Certificates"}
       />
       {drawer.open && drawer.cert ? (
-        <div className="student-certificate">
+        <div className="student-certificate-drawer">
           <Drawer
             title={"Certificate"}
             isOpen={drawer.open}
