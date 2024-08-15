@@ -77,17 +77,23 @@
   height: 50px;
 }
 
-@media only screen and (max-width: 600px) {
-  .card-table th,
-  .card-table td {
-    font-size: 12px;
-    padding: 8px;
-  }
-}
 .table-heading {
   background-color: #4e73df;
   color: #fff;
   padding: 30px;
   border-radius: 5px 5px 0 0;
   padding: 20px;
+  font-size: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-table th,
+  .card-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .table-heading {
+    font-size: 18px;
+  }
 }
