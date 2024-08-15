@@ -5,8 +5,14 @@ export const Table = ({ columns, rows, title }) => {
   return (
     <div>
       <div className="card-table-container">
-      <h2 className="table-heading">{title}</h2>
-      <hr/>
+        {title ? (
+          <>
+            <h2 className="table-heading">{title}</h2>
+            <hr />
+          </>
+        ) : (
+          <></>
+        )}
         <div className="card-table">
           <div className="table-responsive">
             <table id="student-table">
@@ -58,5 +64,5 @@ Table.propTypes = {
   ).isRequired,
   rows: PropTypes.array.isRequired,
   // title:"PropTypes.string",
-  title:"List",
+  title: "List",
 };

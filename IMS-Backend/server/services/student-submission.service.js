@@ -3,13 +3,16 @@ const { BadRequestError } = require("../utils/error");
 const { Constants } = require("../utils/constants");
 const { "Student-Submission": StudentSubmission, Submission } = mongoose.models;
 
-async function getSubmissions(reqUser) {
+async function getSubmissions(reqUser, query) {
   try {
     const filters = {};
     if (reqUser?.role === Constants.Role.STUDENT) {
       filters.createdBy = reqUser?._id;
     } else if (reqUser?.role === Constants.Role.FACULTY) {
       filters.faculty = reqUser?._id;
+    }
+    if (query?.submission) {
+      filters.submission = query.submission;
     }
 
     const submissions = await StudentSubmission.find(

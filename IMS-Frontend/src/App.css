@@ -1,13 +1,13 @@
-input[type='text'],
-input[type='date'],
-input[type='datetime-local'],
-input[type='tel'],
-input[type='email'],
-input[type='password'],
+input[type="text"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
 textarea,
-input[type='number'],
-input[type='file'],
-input[type='time'],
+input[type="number"],
+input[type="file"],
+input[type="time"],
 select {
   width: 100%;
   padding: 8px 10px;
@@ -20,16 +20,16 @@ select {
   color: black;
 }
 
-.form-group input[type='text'],
-.form-group input[type='date'],
-.form-group input[type='datetime-local'],
-.form-group input[type='tel'],
-.form-group input[type='email'],
-.form-group input[type='password'],
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="datetime-local"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="password"],
 .form-group textarea,
-.form-group input[type='number'],
-.form-group input[type='file'],
-.form-group input[type='time'],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group input[type="time"],
 .form-group select {
   margin-bottom: 1px;
 }
@@ -39,19 +39,24 @@ select {
   color: #cc0000;
 }
 
+.success-text {
+  font-size: 14px;
+  color: green;
+}
+
 .form-group {
   margin-bottom: 10px;
 }
 
-input[type='text']:disabled,
-input[type='datetime-local']:disabled,
-input[type='tel']:disabled,
-input[type='email']:disabled,
-input[type='password']:disabled,
+input[type="text"]:disabled,
+input[type="datetime-local"]:disabled,
+input[type="tel"]:disabled,
+input[type="email"]:disabled,
+input[type="password"]:disabled,
 textarea:disabled,
-input[type='number']:disabled,
-input[type='file']:disabled,
-input[type='time']:disabled,
+input[type="number"]:disabled,
+input[type="file"]:disabled,
+input[type="time"]:disabled,
 select:disabled {
   background-color: #eeeeee;
 }
@@ -155,4 +160,8 @@ label {
   overflow: hidden;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.green-text {
+  color: green;
 }

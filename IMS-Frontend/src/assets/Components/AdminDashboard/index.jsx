@@ -12,6 +12,7 @@ import { AnnouncementManagement } from "./AnnouncementManagement";
 import { ClassSchedule } from "./ClassSchedule";
 import { EventManagement } from "./EventManagement";
 import { FeesManagement } from "./FeesManagement";
+import { Submissions } from "./Submissions";
 
 export const AdminDashboard = () => {
   return (
@@ -30,6 +31,7 @@ export const AdminDashboard = () => {
         <Route path="/generate-certificate" element={<GenerateCertificate />} />
         <Route path="/notice-management" element={<AnnouncementManagement />} />
         <Route path="/event-management" element={<EventManagement />} />
+        <Route path="/submissions" element={<Submissions />} />
       </Routes>
     </Layout>
   );
